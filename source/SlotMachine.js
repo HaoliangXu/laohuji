@@ -3,13 +3,13 @@
  * include game pane, status pane and a control pane
  */
 enyo.kind({
-   name: 'SlotMachine',
-   kind: 'Control',
-   components: [
-      {name: 'gamePane', kind: 'GamePane'},
-      {name: 'statusPane', kind: 'StatusPane'},
-      {name: 'controlPane', kind: 'ControlPane'},
-   ],
+  name: 'dili.SlotMachine',
+  kind: 'Control',
+  components: [
+    {name: 'gamePane', kind: 'GamePane'},
+    {name: 'statusPane', kind: 'StatusPane'},
+    {name: 'controlPane', kind: 'ControlPane'},
+  ],
 });
 
 /****
@@ -17,9 +17,9 @@ enyo.kind({
  * shows all visual part of the game
  */
 enyo.kind({
-   name: 'GamePane',
-   kind: 'Control',
-   components: [
+  name: 'dili.GamePane',
+  kind: 'Control',
+  components: [
    ],
 });
 
@@ -29,10 +29,10 @@ enyo.kind({
  * like coins, points ,bonus, etc.
  */
 enyo.kind({
-   name: 'StatusPane',
-   kind: 'Control',
-   components: [
-   ],
+  name: 'dili.StatusPane',
+  kind: 'Control',
+  components: [
+  ],
 });
 
 /****
@@ -41,8 +41,8 @@ enyo.kind({
  * like start, add points, etc.
  */
 enyo.kind({
-   name: 'ControlPane',
-   kind: 'Control',
-   components: [
-   ],
+  name: 'dili.ControlPane',
+  kind: 'Control',
+  components: [
+  ],
 });

@@ -3,8 +3,8 @@
  *
  */
 enyo.kind({
-   name: 'SlotMachineApp',
-   kind: 'Control',
-   components: [
-   ],
+  name: 'dili.SlotMachineApp',
+  kind: 'Control',
+  components: [
+  ],
 });

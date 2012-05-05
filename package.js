@@ -1,4 +1,16 @@
 enyo.depends(
-   'source/SlotMachine.js',
-   'source/SlotMachineApp.js'
+  'source/SlotMachine.js',
+  'source/SlotMachineApp.js',
+  'source/L11n.js',
+  'source/LocalData.js',
+  'source/Source.js',
+  'source/Prefs.js',
+  'source/view/About.js',
+  'source/view/ControlPane.js',
+  'source/view/GamePane.js',
+  'source/view/Help.js',
+  'source/view/Login.js',
+  'source/view/Settings.js',
+  'source/view/StatusPane.js',
+  'css/basic.css'
 );

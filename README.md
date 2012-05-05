@@ -16,6 +16,7 @@ limit free coins everyday
    > easy to change the game logic or ratio
       a preference js is required
       all ratios should be adjustable
+      detect diff devices, diff view and controls
       data source could be either local or server
       data saving could be either local or server, either cookie or db
       whole app could be debug mode or run mode
