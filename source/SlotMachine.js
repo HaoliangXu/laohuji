@@ -6,43 +6,10 @@ enyo.kind({
   name: 'dili.SlotMachine',
   kind: 'Control',
   components: [
-    {name: 'gamePane', kind: 'GamePane'},
-    {name: 'statusPane', kind: 'StatusPane'},
-    {name: 'controlPane', kind: 'ControlPane'},
+    {name: 'gamePane', kind: 'dili.GamePane'},
+    {name: 'statusPane', kind: 'dili.StatusPane'},
+    {name: 'controlPane', kind: 'dili.ControlPane'},
   ],
-});
-
-/****
- * this is the game pane kind
- * shows all visual part of the game
- */
-enyo.kind({
-  name: 'dili.GamePane',
-  kind: 'Control',
-  components: [
-   ],
-});
-
-/****
- * this is the status pane kind
- * shows game status
- * like coins, points ,bonus, etc.
- */
-enyo.kind({
-  name: 'dili.StatusPane',
-  kind: 'Control',
-  components: [
-  ],
-});
-
-/****
- * this is the control pane kind
- * shows controls
- * like start, add points, etc.
- */
-enyo.kind({
-  name: 'dili.ControlPane',
-  kind: 'Control',
-  components: [
-  ],
+  initial: function() {
+  },
 });

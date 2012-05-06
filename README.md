@@ -18,6 +18,6 @@ limit free coins everyday
       all ratios should be adjustable
       detect diff devices, diff view and controls
       data source could be either local or server
-      data saving could be either local or server, either cookie or db
+      data(include settings, user points etc.) saving could be either local or server
       whole app could be debug mode or run mode
    > easy to change the looking

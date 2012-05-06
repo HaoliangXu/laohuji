@@ -1,10 +1,13 @@
 enyo.depends(
+  'lib/enyo/onyx.js',
+  'lib/enyo/onyx.css',
   'source/SlotMachine.js',
   'source/SlotMachineApp.js',
   'source/L11n.js',
   'source/LocalData.js',
   'source/Source.js',
   'source/Prefs.js',
+  'source/Fetcher.js',
   'source/view/About.js',
   'source/view/ControlPane.js',
   'source/view/GamePane.js',
