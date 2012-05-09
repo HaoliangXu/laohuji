@@ -81,7 +81,7 @@ enyo.kind({
   },
 
   //save all settings, refer to this.REMOTE, save them in server or locally
-  saveSettings: {//this will replaced by its children in constructor
+  saveSettings: {//this will replaced by its child in constructor
     debug: function() {
     },
     local: function() {

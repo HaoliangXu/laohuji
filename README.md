@@ -19,5 +19,8 @@ limit free coins everyday
       detect diff devices, diff view and controls
       data source could be either local or server
       data(include settings, user points etc.) saving could be either local or server
+      localStorage
       whole app could be debug mode or run mode
    > easy to change the looking
+5. security
+   > authentication

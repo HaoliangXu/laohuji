@@ -74,7 +74,6 @@ test( 'this.slotMachineApp should work', function() {
 test( 'this.slotMachineApp should include components', function() {
   equal( typeof(this.slotMachineApp.$.slotMachine), 'object', 'should have slotMachine');
   equal( typeof(this.slotMachineApp.$.login), 'object', 'should have login');
-  equal( typeof(this.slotMachineApp.$.fetcher), 'object', 'should have fetcher');
 });
 test( 'should have a startLogin function', function() {
   equal( typeof(this.slotMachineApp.startLogin), 'function');
@@ -83,16 +82,47 @@ test( 'should have a authorized function', function() {
   equal( typeof(this.slotMachineApp.authorized), 'function');
 });
 
-module( 'fetcher', {
+module( 'slotmachine', {
   setup: function() {
     window.dili.prefs = new dili.Prefs();
-    this.fetcher = new dili.Fetcher();
+    this.slotMachine = new dili.SlotMachine();
   },
   teardown: function() {
     delete window.dili.prefs;
-    delete this.fetcher;
+    delete this.slotMachine;
   },
 });
-test( 'should be an object', function() {
-  equal( typeof(this.fetcher), 'object' )
+test('should be an object', function() {
+  equal( typeof(this.slotMachine), 'object');
+});
+test('should have components', function() {
+  equal( typeof(this.slotMachine.$.gamePane), 'object', 'have gamePane' );
+  equal( typeof(this.slotMachine.$.statusPane), 'object', 'have statusPane' );
+  equal( typeof(this.slotMachine.$.controlPane), 'object', 'have controlPane' );
+  equal( typeof(this.slotMachine.$.fetcher), 'object', 'have fetcher' );
+});
+test('this.slotMachine.$.fetcher and statusPane', function() {
+  this.slotMachine.$.fetcher.saveData(10, 1000, 10);
+  this.slotMachine.$.fetcher.fetchData();
+  deepEqual(this.slotMachine.$.statusPane.getProp(), [10, 1000, 10], 'test save date, fetchdata and statuspane');
+  equal(typeof(this.slotMachine.$.fetcher.fetchRoundData), 'function', 'function exist');
+  ok(this.slotMachine.$.fetcher.fetchRoundData(), 'and works');
+});
+/*
+test('gamePane', function() {
+});
+*/
+
+module('round generator', {
+  setup: function() {
+    window.dili.prefs = new dili.Prefs();
+    this.generator= new dili.RoundGenerator();
+  },
+  teardown: function() {
+    delete window.dili.prefs;
+    delete this.generator;
+  },
+});
+test('round should work', function() {
+  ok(this.generator.round());
 });

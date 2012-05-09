@@ -1,0 +1,255 @@
+body{
+  background-color:#2D2D2D ;
+}
+.app{
+  display: block;
+  width: 900px;
+  height: 600px;
+}
+.app div{
+  display: inline-block;
+}
+.app>.slotMachine{
+}
+.app>.slotMachine>.gamePane{
+  margin: 30px;
+  position:relative;
+  width: 500px;
+  height: 500px;
+}
+.jpLamp{
+  position: absolute;
+  background-color: #333;
+  border: 1px dashed #444;
+  margin: 6px;
+  top:192px;
+  left:192px;
+  width: 50px;
+  height: 50px;
+  z-index: 100;
+}
+.supPane{
+  position: absolute;
+  top: 128px;
+  left: 128px;
+  height: 192px;
+  width: 192px;
+}
+.supLamp{
+  position: absolute;
+  border: 1px dashed #554;
+  margin: 4px;
+  width: 54px;
+  height: 54px;
+}
+
+.sl0
+{
+  top:0;
+  left:0;
+}
+.sl1
+{
+  top:0;
+  left:64px;
+}
+.sl2
+{
+  top:0;
+  left:128px;
+}
+.sl3
+{
+  top:64px;
+  left:128px;
+}
+.sl4
+{
+  top:128px;
+  left:128px;
+}
+.sl5
+{
+  top:128px;
+  left:64px;
+}
+.sl6
+{
+  top:128px;
+  left:0;
+}
+.sl7
+{
+  top:64px;
+  left:0;
+}
+
+
+.lamp{
+  position: absolute;
+  border-radius: 45px;
+  border: 7px solid #595F54;
+  width: 50px;
+  height: 50px;
+}
+.color0{
+  //background-color: #4c6173;
+}
+.color1{
+  background-color:#fa3f32;
+}
+.color2{
+  background-color:#ffcc24;
+}
+.color3{
+  background-color:#009de0;
+}
+.color4{
+  background-color: #60bd19;
+}
+.l0
+{
+  top:0;
+  left:0;
+}
+.l1
+{
+  top:0;
+  left:64px;
+}
+.l2
+{
+  top:0;
+  left:128px;
+}
+.l3
+{
+  top:0;
+  left:192px;
+}
+.l4
+{
+  top:0;
+  left:256px;
+}
+.l5
+{
+  top:0;
+  left:320px;
+}
+.l6
+{
+  top:0;
+  left:384px;
+}
+.l7
+{
+  top:64px;
+  left:384px;
+}
+.l8
+{
+  top:128px;
+  left:384px;
+}
+.l9
+{
+  top:192px;
+  left:384px;
+}
+.l10
+{
+  top:256px;
+  left:384px;
+}
+.l11
+{
+  top:320px;
+  left:384px;
+}
+.l12
+{
+  top:384px;
+  left:384px;
+}
+.l13
+{
+  top:384px;
+  left:320px;
+}
+.l14
+{
+  top:384px;
+  left:256px;
+}
+.l15
+{
+  top:384px;
+  left:192px;
+}
+.l16
+{
+  top:384px;
+  left:128px;
+}
+.l17
+{
+  top:384px;
+  left:64px;
+}
+.l18
+{
+  top:384px;
+  left:0;
+}
+.l19
+{
+  top:320px;
+  left:0;
+}
+.l20
+{
+  top:256px;
+  left:0;
+}
+.l21
+{
+  top:192px;
+  left:0;
+}
+.l22
+{
+  top:128px;
+  left:0;
+}
+.l23
+{
+  top:64px;
+  left:0;
+}
+.app>.slotMachine>.statusPane{
+  margin-top: 50px;
+  padding: 2px 2px 2px 7px;
+  float: right;
+  //border: 1px solid #333;
+  background: #353535;
+}
+.app>.slotMachine>.statusPane>div{
+  display: block;
+}
+.controlBanner{
+  background-color: #584939;
+  margin: 7px 7px 10px 0px;
+  text-align:center;
+  width: 96px;
+  //border: 1px dashed #444;
+  color: #899;
+}
+.controlNumber{
+  background-color: #595955;
+  margin: 0px 7px 7px 0px;
+  text-align:center;
+  width: 96px;
+  //border: 1px dashed #444;
+  color: #aa8;
+}
