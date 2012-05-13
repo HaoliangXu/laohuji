@@ -105,6 +105,7 @@ enyo.kind({
     if (index == 0) {
       //did user bet? if yes, start game
       if (this.alreadyBet) {
+        this.log(this.alreadyBet);
         inSender.disableAll(true);
         this.$.fetcher.fetchRoundData();
         return;
@@ -114,7 +115,7 @@ enyo.kind({
       for (i = 0; i < 12; i ++) {
         pointsNeeded += this.weight[i];
       }
-      if (prop.points >= pointsNeeded) {//if enough points
+      if (pointsNeeded > 0 && prop.points >= pointsNeeded) {//if enough points
         //change controlpane to show last bet
         for (i = 0; i < 12; i ++) {
           inSender.setValue(i + 4, this.weight[i]);
