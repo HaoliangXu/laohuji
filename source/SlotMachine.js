@@ -176,7 +176,8 @@ enyo.kind({
   //handle key press, call handle click seperately
   handleKeyPress: function() {
     this.handleKeyPress = function(inEvent) {
-      var a = window.dili.prefs.settings.keyMap[inEvent.keyCode];
+    this.log(inEvent);
+      var a = window.dili.prefs.settings.keyMap[inEvent.charCode];
       if (typeof a === 'number') {
         a = {index: a};
         this.handleButtonClick(this.$.controlPane, a);
