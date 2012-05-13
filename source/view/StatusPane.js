@@ -16,17 +16,25 @@ enyo.kind({
     {classes: 'controlNumberGroup', components:[
       {classes: 'controlNumber', name: 'bonusNo', content: ''},
       {classes: 'controlNumber', name: 'pointsNo', content: ''},
-      {classes: 'controlNumber', name: 'coinsNo', content: ''},
+      {classes: 'controlNumber', name: 'coinsNo', content: '', onclick: 'easterEgg'},
     ]},
   ],
-  published: {
-    prop: '',
-  },
 
   //when data changed, 
-  propChanged: function() {
-    this.$.bonusNo.setContent(this.prop[0]);
-    this.$.pointsNo.setContent(this.prop[1]);
-    this.$.coinsNo.setContent(this.prop[2]);
+  setProp: function(prop) {
+    this.$.bonusNo.setContent(prop.bonus);
+    this.$.pointsNo.setContent(prop.points);
+    this.$.coinsNo.setContent(prop.coins);
+  },
+
+  easterEgg: function() {
+    /*
+    var a = window.prompt('请输入您想要的Coin数：', this.prop[2]);
+    if ( a > this.prop[2]) {
+      window.alert('SB,这你也信');
+      return;
+    }
+    this.$.coinsNo.setContent(a);
+    */
   },
 });

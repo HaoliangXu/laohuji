@@ -31,7 +31,7 @@ enyo.kind({
     }
     this.$.supPane.createComponents(o, {owner: this});
 
-    this.setLamps([1,0,4,2,1,0,1,2,0,1,4,0,1,2,0,3,0,1,0,4,0,1,2,0])
+    this.setLamps([0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0])
   },
 
   //set main lamps, depend on the inArray

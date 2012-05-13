@@ -14,8 +14,9 @@ body{
 .app>.slotMachine>.gamePane{
   margin: 30px;
   position:relative;
-  width: 500px;
-  height: 500px;
+  width: 448px;
+  height: 448px;
+  float: left;
 }
 .jpLamp{
   position: absolute;
@@ -91,144 +92,174 @@ body{
   border: 7px solid #595F54;
   width: 50px;
   height: 50px;
+  background-repeat:no-repeat;
+  background-image: url("../image/2.png"); 
 }
 .color0{
   //background-color: #4c6173;
 }
 .color1{
   background-color:#fa3f32;
+  border-color: #8a3f32;
 }
 .color2{
   background-color:#ffcc24;
+  border-color: #8f6c24;
 }
 .color3{
   background-color:#009de0;
+  border-color: #305d90;
 }
 .color4{
   background-color: #60bd19;
+  border-color: #207f09;
 }
 .l0
 {
+  background-position: -112px 0;
   top:0;
   left:0;
 }
 .l1
 {
+  background-position: -56px 0;
   top:0;
   left:64px;
 }
 .l2
 {
+  background-position: 0 0;
   top:0;
   left:128px;
 }
 .l3
 {
+  background-image: none;
   top:0;
   left:192px;
 }
 .l4
 {
+  background-position: 0 -56px;
   top:0;
   left:256px;
 }
 .l5
 {
+  background-position: -168px 0;
   top:0;
   left:320px;
 }
 .l6
 {
+  background-position: -224px 0;
   top:0;
   left:384px;
 }
 .l7
 {
+  background-position: -280px 0;
   top:64px;
   left:384px;
 }
 .l8
 {
+  background-position: -280px -56px;
   top:128px;
   left:384px;
 }
 .l9
 {
+  background-image: none;
   top:192px;
   left:384px;
 }
 .l10
 {
+  background-position: -168px 0;
   top:256px;
   left:384px;
 }
 .l11
 {
+  background-position: -112px -56px;
   top:320px;
   left:384px;
 }
 .l12
 {
+  background-position: -112px 0;
   top:384px;
   left:384px;
 }
 .l13
 {
+  background-position: -56px 0;
   top:384px;
   left:320px;
 }
 .l14
 {
+  background-position: -336px -56px;
   top:384px;
   left:256px;
 }
 .l15
 {
+  background-image: none;
   top:384px;
   left:192px;
 }
 .l16
 {
+  background-position: -336px 0;
   top:384px;
   left:128px;
 }
 .l17
 {
+  background-position: -224px -56px;
   top:384px;
   left:64px;
 }
 .l18
 {
+  background-position: -224px 0;
   top:384px;
   left:0;
 }
 .l19
 {
+  background-position: -392px 0;
   top:320px;
   left:0;
 }
 .l20
 {
+  background-position: -392px -56px;
   top:256px;
   left:0;
 }
 .l21
 {
+  background-image: none;
   top:192px;
   left:0;
 }
 .l22
 {
+  background-position: -168px 0;
   top:128px;
   left:0;
 }
 .l23
 {
+  background-position: -56px -56px;
   top:64px;
   left:0;
 }
 .app>.slotMachine>.statusPane{
-  margin-top: 50px;
+  margin:50px 20px;
   padding: 2px 2px 2px 7px;
   float: right;
   //border: 1px solid #333;
@@ -252,4 +283,129 @@ body{
   width: 96px;
   //border: 1px dashed #444;
   color: #aa8;
+}
+
+
+.controlPane{
+  float: right;
+  position: relative;
+  width: 300px;
+  height: 400px;
+  margin-right: 14px;
+}
+.controlPane>.button{
+  color: #aa8;
+  margin: 4px;
+  background-color: #404040;
+  border: 3px solid #353535;
+  text-align: center;
+  width: 56px;
+  height: 64px;
+  line-height:114px;
+  background-image: url("../image/2.png"); 
+}
+.controlPane>.button:hover{
+  background-color: #606555;
+  width: 60px;
+  height: 66px;
+  border:1px dashed #444;
+}
+.controlPane>.button.disable{
+  border-color: #222;
+  color: #111;
+}
+.controlPane>.button.flash{
+  color: #999969;
+}
+.controlPane>.b0
+{
+  background-image: -webkit-linear-gradient(top,#404040 15%, #606060 15%, #606060 30%, #404040 30%, #404040 37%,#606060 37%, #606060 52%,#404040 52%)); /* Chrome 10+, Saf5.1+, iOS 5+ */
+  background-image:    -moz-linear-gradient(top, #404040 15%, #606060 15%, #606060 30%, #404040 30%, #404040 37%,#606060 37%, #606060 52%,#404040 52%); /* FF3.6+ */
+  background-image:     -ms-linear-gradient(top, #404040 15%, #606060 15%, #606060 30%, #404040 30%, #404040 37%,#606060 37%, #606060 52%,#404040 52%)); /* IE10 */
+  background-image:      -o-linear-gradient(top, #404040 15%, #606060 15%, #606060 30%, #404040 30%, #404040 37%,#606060 37%, #606060 52%,#404040 52%)); /* Opera 11.10+ */
+  background-image:         linear-gradient(to bottom, #404040 15%, #606060 15%, #606060 30%, #404040 30%, #404040 37%,#606060 37%, #606060 52%,#404040 52%));
+}
+.controlPane>.b1
+{
+  background-image: -webkit-linear-gradient(top,#404040 15%, #606060 15%, #606060 30%, #404040 30%, #404040 37%,#606060 37%, #606060 52%,#404040 52%)); /* Chrome 10+, Saf5.1+, iOS 5+ */
+  background-image:    -moz-linear-gradient(top, #404040 15%, #606060 15%, #606060 30%, #404040 30%, #404040 37%,#606060 37%, #606060 52%,#404040 52%); /* FF3.6+ */
+  background-image:     -ms-linear-gradient(top, #404040 15%, #606060 15%, #606060 30%, #404040 30%, #404040 37%,#606060 37%, #606060 52%,#404040 52%)); /* IE10 */
+  background-image:      -o-linear-gradient(top, #404040 15%, #606060 15%, #606060 30%, #404040 30%, #404040 37%,#606060 37%, #606060 52%,#404040 52%)); /* Opera 11.10+ */
+  background-image:         linear-gradient(to bottom, #404040 15%, #606060 15%, #606060 30%, #404040 30%, #404040 37%,#606060 37%, #606060 52%,#404040 52%));
+}
+.controlPane>.b2
+{
+  background-image: -webkit-linear-gradient(top,#404040 15%, #606060 15%, #606060 30%, #404040 30%, #404040 37%,#606060 37%, #606060 52%,#404040 52%)); /* Chrome 10+, Saf5.1+, iOS 5+ */
+  background-image:    -moz-linear-gradient(top, #404040 15%, #606060 15%, #606060 30%, #404040 30%, #404040 37%,#606060 37%, #606060 52%,#404040 52%); /* FF3.6+ */
+  background-image:     -ms-linear-gradient(top, #404040 15%, #606060 15%, #606060 30%, #404040 30%, #404040 37%,#606060 37%, #606060 52%,#404040 52%)); /* IE10 */
+  background-image:      -o-linear-gradient(top, #404040 15%, #606060 15%, #606060 30%, #404040 30%, #404040 37%,#606060 37%, #606060 52%,#404040 52%)); /* Opera 11.10+ */
+  background-image:         linear-gradient(to bottom, #404040 15%, #606060 15%, #606060 30%, #404040 30%, #404040 37%,#606060 37%, #606060 52%,#404040 52%));
+}
+.controlPane>.b3{
+visibility:hidden;
+}
+.controlPane>.b4
+{
+  background-position: 0 0;
+}
+.controlPane>.b5
+{
+  background-position: -336px 0;
+}
+.controlPane>.b6
+{
+  background-position: -392px 0;
+}
+.controlPane>.b7
+{
+  background-position: -280px 0;
+}
+.controlPane>.b8
+{
+  background-position: -56px 0;
+}
+.controlPane>.b9
+{
+  background-position: -224px 0;
+}
+.controlPane>.b10
+{
+  background-position: -112px 0;
+}
+.controlPane>.b11
+{
+  background-position: -168px 0;
+}
+.controlPane>.b12
+{ 
+  background-image: -webkit-linear-gradient(top,#404040 10%, #fa3f32 20%, #fa3f32 50%, #404040 60%); /* Chrome 10+, Saf5.1+, iOS 5+ */
+  background-image:    -moz-linear-gradient(top, #404040 10%, #fa3f32 20%, #fa3f32 50%, #404040 60%); /* FF3.6+ */
+  background-image:     -ms-linear-gradient(top, #404040 10%, #fa3f32 20%, #fa3f32 50%, #404040 60%); /* IE10 */
+  background-image:      -o-linear-gradient(top, #404040 10%, #fa3f32 20%, #fa3f32 50%, #404040 60%); /* Opera 11.10+ */
+  background-image:         linear-gradient(to bottom, #404040 10%, #fa3f32 20%, #fa3f32 50%, #404040 60%);
+}
+
+.controlPane>.b13
+{
+  background-image: -webkit-linear-gradient(top,#404040 10%, #ffcc24 20%, #ffcc24 50%, #404040 60%); /* Chrome 10+, Saf5.1+, iOS 5+ */
+  background-image:    -moz-linear-gradient(top, #404040 10%, #ffcc24 20%, #ffcc24 50%, #404040 60%); /* FF3.6+ */
+  background-image:     -ms-linear-gradient(top, #404040 10%, #ffcc24 20%, #ffcc24 50%, #404040 60%); /* IE10 */
+  background-image:      -o-linear-gradient(top, #404040 10%, #ffcc24 20%, #ffcc24 50%, #404040 60%); /* Opera 11.10+ */
+  background-image:         linear-gradient(to bottom, #404040 10%, #ffcc24 20%, #ffcc24 50%, #404040 60%);
+}
+.controlPane>.b14
+{
+  background-image: -webkit-linear-gradient(top,#404040 10%, #009de0 20%, #009de0 50%, #404040 60%); /* Chrome 10+, Saf5.1+, iOS 5+ */
+  background-image:    -moz-linear-gradient(top, #404040 10%, #009de0 20%, #009de0 50%, #404040 60%); /* FF3.6+ */
+  background-image:     -ms-linear-gradient(top, #404040 10%, #009de0 20%, #009de0 50%, #404040 60%); /* IE10 */
+  background-image:      -o-linear-gradient(top, #404040 10%, #009de0 20%, #009de0 50%, #404040 60%); /* Opera 11.10+ */
+  background-image:         linear-gradient(to bottom, #404040 10%, #009de0 20%, #009de0 50%, #404040 60%);
+}
+.controlPane>.b15
+{
+  background-image: -webkit-linear-gradient(top,#404040 10%, #60bd19 20%, #60bd19 50%, #404040 60%); /* Chrome 10+, Saf5.1+, iOS 5+ */
+  background-image:    -moz-linear-gradient(top, #404040 10%, #60bd19 20%, #60bd19 50%, #404040 60%); /* FF3.6+ */
+  background-image:     -ms-linear-gradient(top, #404040 10%, #60bd19 20%, #60bd19 50%, #404040 60%); /* IE10 */
+  background-image:      -o-linear-gradient(top, #404040 10%, #60bd19 20%, #60bd19 50%, #404040 60%); /* Opera 11.10+ */
+  background-image:         linear-gradient(to bottom, #404040 10%, #60bd19 20%, #60bd19 50%, #404040 60%);
 }

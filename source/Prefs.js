@@ -7,6 +7,7 @@ enyo.kind({
     REMOTE: false,//data source, data from remote server or local generator
     CARD: {},//window size
     SUPPORT: {},//browser of device supported features, e.g., sound
+    COINTOPOINTRATE: 100,
     settings: {//all user changeable settings here
       soundOn: false,//soundOn or off
       theme: 'debug'//the theme for the game
