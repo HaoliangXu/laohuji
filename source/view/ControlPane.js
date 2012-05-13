@@ -40,9 +40,6 @@ enyo.kind({
   },
 
   handleClick: function(inSender) {
-    if (inSender.hasClass('disable')) {
-      return;
-    };
     var index = parseInt(inSender.name.slice(6), 10);
     index = {'index': index};//wrap data in an object for enyo 2.0 b2
     this.doButtonClicked(index);

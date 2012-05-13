@@ -7,7 +7,8 @@ enyo.kind({
   kind: 'Control',
   classes: 'slotMachine',
   published: {
-    //key map, 
+    //game status, waiting, running, fetching
+    gameStatus: "waiting",
     //users properties, bonus points coins
     //every change shows on statusPane
     prop: {
@@ -62,9 +63,9 @@ enyo.kind({
   //initial works, set username, fetch starting data
   initial: {
     debug: function(id) {
-      this.logged = true;
       this.$.fetcher.setUsername(id);
       this.$.fetcher.saveData(0, 0, 100);
+      this.gameStatus = 'fetching';
       this.$.fetcher.fetchData();
       this.handleKeyPress();
       window.addEventListener("keypress", this.handleKeyPress.bind(this));
@@ -74,6 +75,7 @@ enyo.kind({
   //handle data
   handleData: function(inSender, data) {
     var i;
+    this.gameStatus = 'waiting';
     for (i in data) {
       data[i] = parseInt(data[i], 10);
     }
@@ -86,9 +88,11 @@ enyo.kind({
   //handle round data
   handleRoundData: function(inSender, roundData) {
     roundData.weight = this.weight;
+    this.gameStatus = 'running';
     this.$.gamePane.start(roundData);
   },
   handleButtonClick: function(inSender, inEvent){
+    if (this.gameStatus != 'waiting') return;
     var index = inEvent.index;
     var i;
     var pointsNeeded = 0;
@@ -105,8 +109,8 @@ enyo.kind({
     if (index == 0) {
       //did user bet? if yes, start game
       if (this.alreadyBet) {
-        this.log(this.alreadyBet);
         inSender.disableAll(true);
+        this.gameStatus = 'fetching';
         this.$.fetcher.fetchRoundData();
         return;
       }
@@ -121,8 +125,9 @@ enyo.kind({
           inSender.setValue(i + 4, this.weight[i]);
         }
         //then start game
-        this.$.fetcher.fetchRoundData();
         inSender.disableAll(true);
+        this.gameStatus = 'fetching';
+        this.$.fetcher.fetchRoundData();
       }
       //not enough points, fail to start
       return;
@@ -183,6 +188,7 @@ enyo.kind({
   handleShowFinish: function(inSender) {
     this.alreadyBet = false;
     this.$.controlPane.disableAll(false);
+    this.gameStatus = 'waiting';
   },
   handleFetchFailed: function() {
     window.alert('fetch data failed, restart game');
