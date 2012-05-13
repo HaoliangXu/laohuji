@@ -7,6 +7,7 @@ enyo.kind({
   kind: 'Control',
   classes: 'slotMachine',
   published: {
+    //key map, 
     //users properties, bonus points coins
     //every change shows on statusPane
     prop: {
@@ -61,9 +62,12 @@ enyo.kind({
   //initial works, set username, fetch starting data
   initial: {
     debug: function(id) {
+      this.logged = true;
       this.$.fetcher.setUsername(id);
       this.$.fetcher.saveData(0, 0, 100);
       this.$.fetcher.fetchData();
+      this.handleKeyPress();
+      window.addEventListener("keypress", this.handleKeyPress.bind(this));
     }
   },
 
@@ -81,10 +85,11 @@ enyo.kind({
 
   //handle round data
   handleRoundData: function(inSender, roundData) {
+    roundData.weight = this.weight;
     this.$.gamePane.start(roundData);
   },
-  handleButtonClick: function(inSender, index){
-    this.log(index);
+  handleButtonClick: function(inSender, inEvent){
+    var index = inEvent.index;
     var i;
     var pointsNeeded = 0;
     var prop = {points: this.prop.points, bonus: this.prop.bonus, coins: this.prop.coins};
@@ -98,14 +103,10 @@ enyo.kind({
 
     //start button clicked
     if (index == 0) {
-      this.log(this.alreadyBet);
       //did user bet? if yes, start game
       if (this.alreadyBet) {
-        this.log('1');
+        inSender.disableAll(true);
         this.$.fetcher.fetchRoundData();
-        this.log('2');
-        this.$.controlPane.disableAll(true);
-        this.log('3');
         return;
       }
 
@@ -116,11 +117,11 @@ enyo.kind({
       if (prop.points >= pointsNeeded) {//if enough points
         //change controlpane to show last bet
         for (i = 0; i < 12; i ++) {
-          this.$.controlPane.setValue(i + 4, this.weight[i]);
+          inSender.setValue(i + 4, this.weight[i]);
         }
         //then start game
         this.$.fetcher.fetchRoundData();
-        this.$.controlPane.disableAll(true);
+        inSender.disableAll(true);
       }
       //not enough points, fail to start
       return;
@@ -147,7 +148,7 @@ enyo.kind({
     if (4 <= index && index <= 11) {
       if (prop.points > 0 && this.weight[index - 4] < 99) {
         this.weight[index - 4] ++;
-        this.$.controlPane.setValue(index, this.weight[index - 4]);
+        inSender.setValue(index, this.weight[index - 4]);
         prop.points --;
         this.setProp(prop);
         this.alreadyBet = true;
@@ -158,7 +159,7 @@ enyo.kind({
     if (12 <= index) {
       if (prop.points > 9 && this.weight[index - 4] < 90) {
         this.weight[index - 4] += 10;
-        this.$.controlPane.setValue(index, this.weight[index - 4]);
+        inSender.setValue(index, this.weight[index - 4]);
         prop.points -= 10;
         this.setProp(prop);
         this.alreadyBet = true;
@@ -166,9 +167,19 @@ enyo.kind({
       return;
     }
   },
+  //handle key press, call handle click seperately
+  handleKeyPress: function() {
+    this.handleKeyPress = function(inEvent) {
+      var a = window.dili.prefs.settings.keyMap[inEvent.keyCode];
+      if (typeof a === 'number') {
+        a = {index: a};
+        this.handleButtonClick(this.$.controlPane, a);
+      }
+    }
+  },
 
   //handle show in game Pane finished
-  handleShowFinish: function() {
+  handleShowFinish: function(inSender) {
     this.alreadyBet = false;
     this.$.controlPane.disableAll(false);
   },

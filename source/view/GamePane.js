@@ -54,4 +54,7 @@ enyo.kind({
     temp.removeClass('color' + inOldStatus);
     this.lampStatusArray[i] = inStatus;
   },
+  start: function(roundData) {
+    this.log(roundData);
+  },
 });

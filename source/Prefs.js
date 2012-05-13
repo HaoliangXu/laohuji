@@ -10,7 +10,24 @@ enyo.kind({
     COINTOPOINTRATE: 100,
     settings: {//all user changeable settings here
       soundOn: false,//soundOn or off
-      theme: 'debug'//the theme for the game
+      theme: 'debug',//the theme for the game
+      keyMap: {
+        '116': 0,
+        '103': 1,
+        '98':  2,
+        '113': 4,
+        '119': 5,
+        '101': 6,
+        '114': 7,
+        '97' : 8,
+        '115': 9,
+        '100': 10,
+        '102': 11,
+        '122': 12,
+        '120': 13,
+        '99' : 14,
+        '118': 15,
+      },
     },
   },
 

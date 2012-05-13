@@ -51,7 +51,6 @@ enyo.kind({
       while(this.randomRates(this.rates.starting[1])) {//if xmbs recurs
         data.xmbs.push(this.randomOne(25) + 5);
       }
-      this.log(data);
       this.doGenerated(data);
       return;
     }
@@ -62,13 +61,11 @@ enyo.kind({
       while(this.randomRates(this.rates.starting[1])) {//if xmbs recurs
         data.xmbs.push(this.randomOne(25) + 5);
       }
-      this.log(data);
       this.doGenerated(data);
       return;
     }
     if (this.randomRates(this.rates.big[1] / (1 - this.rates.big[0]))) {
       data.starting = 18 + this.randomOne(2);
-      this.log(data);
       this.doGenerated(data);
       return;
     }

@@ -43,9 +43,8 @@ enyo.kind({
     if (inSender.hasClass('disable')) {
       return;
     };
-    this.log(inSender.name);
     var index = parseInt(inSender.name.slice(6), 10);
-    this.log(index);
+    index = {'index': index};//wrap data in an object for enyo 2.0 b2
     this.doButtonClicked(index);
   },
   disableAll: function(inTrueToDisable) {
