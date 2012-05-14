@@ -111,7 +111,7 @@ enyo.kind({
       if (this.alreadyBet) {
         inSender.disableAll(true);
         this.gameStatus = 'fetching';
-        this.$.fetcher.fetchRoundData();
+        this.$.fetcher.fetchRoundData(this.weight);
         return;
       }
 
@@ -127,7 +127,7 @@ enyo.kind({
         //then start game
         inSender.disableAll(true);
         this.gameStatus = 'fetching';
-        this.$.fetcher.fetchRoundData();
+        this.$.fetcher.fetchRoundData(this.weight);
       }
       //not enough points, fail to start
       return;

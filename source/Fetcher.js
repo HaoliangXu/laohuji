@@ -27,6 +27,7 @@ enyo.kind({
       this.fetchData = this.fetchData.debug;
       this.saveData = this.saveData.debug;
       this.fetchRoundData = this.fetchRoundData.debug;
+      this.handleGenerated = this.handleGenerated.debug;
     } else {
     }
   },
@@ -56,11 +57,13 @@ enyo.kind({
 
   //fetch round data, for a round of game, to be replaced
   fetchRoundData: {
-    debug: function() {
+    debug: function(weight) {
       this.$.generator.round();
     },
   },
-  handleGenerated: function(inSender, roundData) {
-    this.doGotRoundData(roundData);
+  handleGenerated: {
+    debug: function(inSender, roundData) {
+      this.doGotRoundData(roundData);
+    },
   },
 });
