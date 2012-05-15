@@ -2,11 +2,17 @@
  * this is the status pane kind
  * shows game status
  * like coins, points ,bonus, etc.
+ * publick methods:{
+ *  setProp(prop object)
+ * }
  */
 enyo.kind({
   name: 'dili.StatusPane',
   kind: 'Control',
   classes: 'statusPane',
+  events: {
+    onEasterEgg: '',
+  },
   components: [
     {classes: 'controlBannerGroup', components:[
       {classes: 'controlBanner', content: 'Bonus'},
@@ -28,13 +34,6 @@ enyo.kind({
   },
 
   easterEgg: function() {
-    /*
-    var a = window.prompt('请输入您想要的Coin数：', this.prop[2]);
-    if ( a > this.prop[2]) {
-      window.alert('SB,这你也信');
-      return;
-    }
-    this.$.coinsNo.setContent(a);
-    */
+    this.doEasterEgg();
   },
 });

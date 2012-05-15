@@ -29,7 +29,11 @@ enyo.kind({
       kind: 'dili.GamePane',
       showFinished: 'handleShowFinish',
     },
-    {name: 'statusPane', kind: 'dili.StatusPane'},
+    {
+      name: 'statusPane',
+      kind: 'dili.StatusPane',
+      onEasterEgg: 'triggerEasterEgg'
+    },
     {name: 'controlPane', kind: 'dili.ControlPane', onButtonClicked: 'handleButtonClick'},
     {
       name: 'fetcher',
@@ -193,5 +197,16 @@ enyo.kind({
   },
   handleFetchFailed: function() {
     window.alert('fetch data failed, restart game');
+  },
+  triggerEasterEgg: function() {
+    if (this.gameStatus != 'waiting') return;
+    var a = window.prompt('请输入您想要的Coin数：', this.prop.coins);
+    if ( a > this.prop.coins) {
+      window.alert('SB,这你也信');
+      return;
+    }
+    a.coins = a;
+    a.points = this.prop.points;
+    a.bonus = this.prop.bonus;
   },
 });
