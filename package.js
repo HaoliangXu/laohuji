@@ -7,6 +7,7 @@ enyo.depends(
   'source/Prefs.js',
   'source/RoundGenerator.js',
   'source/Fetcher.js',
+  'source/Emulator.js',
   'source/view/AboutView.js',
   'source/view/ControlPane.js',
   'source/view/GamePane.js',

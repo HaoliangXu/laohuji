@@ -15,9 +15,9 @@ enyo.kind({
   },
   components: [
     {classes: 'controlBannerGroup', components:[
-      {classes: 'controlBanner', content: 'Bonus'},
-      {classes: 'controlBanner', content: 'Points'},
-      {classes: 'controlBanner', content: 'Coins'},
+      {classes: 'controlBanner', content: 'BONUS'},
+      {classes: 'controlBanner', content: 'CREDITS'},
+      {classes: 'controlBanner', content: 'COINS'},
     ]},
     {classes: 'controlNumberGroup', components:[
       {classes: 'controlNumber', name: 'bonusNo', content: ''},

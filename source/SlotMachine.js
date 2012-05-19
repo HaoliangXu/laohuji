@@ -21,20 +21,25 @@ enyo.kind({
     //good for rebet same points
     alreadyBet: false,
 
-    weight: [],//how much all items user bet
+    weight: [0,0,0,0,0,0,0,0,0,0,0,0],//how much all items user bet
   },
   components: [
     {
       name: 'gamePane',
       kind: 'dili.GamePane',
-      showFinished: 'handleShowFinish',
+      onShowFinished: 'handleShowFinish',
+      onAddBonus: 'handleAddBonus',
     },
     {
       name: 'statusPane',
       kind: 'dili.StatusPane',
       onEasterEgg: 'triggerEasterEgg'
     },
-    {name: 'controlPane', kind: 'dili.ControlPane', onButtonClicked: 'handleButtonClick'},
+    {
+      name: 'controlPane',
+      kind: 'dili.ControlPane',
+      onButtonClicked: 'handleButtonClick'
+    },
     {
       name: 'fetcher',
       kind: 'dili.Fetcher',
@@ -44,13 +49,9 @@ enyo.kind({
     },
   ],
   create: function() {
-    var i = 12;
     this.inherited(arguments);
     this.setupMethod();
     //initial weight
-    while (i--) {
-      this.weight[i] = 0;
-    }
   },
 
   //setup method,
@@ -67,8 +68,17 @@ enyo.kind({
   //initial works, set username, fetch starting data
   initial: {
     debug: function(id) {
+      var data = {};
       this.$.fetcher.setUsername(id);
-      this.$.fetcher.saveData(0, 0, 100);
+      this.log(localStorage.getItem('coins'));
+      data = localStorage.getItem('coins');
+      if (!data && data !== 0) {
+        data = {};
+        data.coins = 100;
+        data.points = 0;
+        data.bonus = 0;
+        this.$.fetcher.saveData(data);
+      }
       this.gameStatus = 'fetching';
       this.$.fetcher.fetchData();
       this.handleKeyPress();
@@ -92,6 +102,7 @@ enyo.kind({
   //handle round data
   handleRoundData: function(inSender, roundData) {
     roundData.weight = this.weight;
+    this.alreadyBet = false;
     this.gameStatus = 'running';
     this.$.gamePane.start(roundData);
   },
@@ -125,6 +136,8 @@ enyo.kind({
       }
       if (pointsNeeded > 0 && prop.points >= pointsNeeded) {//if enough points
         //change controlpane to show last bet
+        prop.points -= pointsNeeded;
+        this.setProp(prop);
         for (i = 0; i < 12; i ++) {
           inSender.setValue(i + 4, this.weight[i]);
         }
@@ -147,7 +160,7 @@ enyo.kind({
     }
     //outsert button
     if (index == 2) {
-      if (prop.points > window.dili.prefs.COINTOPOINTRATE) {
+      if (prop.points >= window.dili.prefs.COINTOPOINTRATE) {
         prop.points -= window.dili.prefs.COINTOPOINTRATE;
         prop.coins ++;
         this.setProp(prop);
@@ -157,6 +170,9 @@ enyo.kind({
     //items clicked
     if (4 <= index && index <= 11) {
       if (prop.points > 0 && this.weight[index - 4] < 99) {
+        if (!this.alreadyBet) {
+          this.weight = [0,0,0,0,0,0,0,0,0,0,0,0];
+        }
         this.weight[index - 4] ++;
         inSender.setValue(index, this.weight[index - 4]);
         prop.points --;
@@ -168,6 +184,9 @@ enyo.kind({
     //color clicked
     if (12 <= index) {
       if (prop.points > 9 && this.weight[index - 4] < 90) {
+        if (!this.alreadyBet) {
+          this.weight = [0,0,0,0,0,0,0,0,0,0,0,0];
+        }
         this.weight[index - 4] += 10;
         inSender.setValue(index, this.weight[index - 4]);
         prop.points -= 10;
@@ -180,7 +199,6 @@ enyo.kind({
   //handle key press, call handle click seperately
   handleKeyPress: function() {
     this.handleKeyPress = function(inEvent) {
-    this.log(inEvent);
       var a = window.dili.prefs.settings.keyMap[inEvent.charCode];
       if (typeof a === 'number') {
         a = {index: a};
@@ -191,22 +209,37 @@ enyo.kind({
 
   //handle show in game Pane finished
   handleShowFinish: function(inSender) {
+    var i;
+    this.$.fetcher.saveData(this.prop);
     this.alreadyBet = false;
     this.$.controlPane.disableAll(false);
+    for (i = 4; i < 16; i ++) {
+      this.$.controlPane.setValue(i, 0);
+    }
     this.gameStatus = 'waiting';
   },
+  handleAddBonus: function(inSender, inData) {
+    var a = {};
+    a.coins = this.prop.coins;
+    a.points = this.prop.points;
+    a.bonus = this.prop.bonus + inData.bonus;
+    this.setProp(a);
+  },
+
   handleFetchFailed: function() {
     window.alert('fetch data failed, restart game');
   },
   triggerEasterEgg: function() {
     if (this.gameStatus != 'waiting') return;
-    var a = window.prompt('请输入您想要的Coin数：', this.prop.coins);
+    var a = window.prompt('Please type the number of coins you want:', this.prop.coins);
     if ( a > this.prop.coins) {
-      window.alert('SB,这你也信');
+      window.alert('Gotcha!!');
       return;
     }
-    a.coins = a;
-    a.points = this.prop.points;
-    a.bonus = this.prop.bonus;
+    var b = {};
+    b.coins = a;
+    b.points = this.prop.points;
+    b.bonus = this.prop.bonus;
+    this.$.statusPane.setProp(b);
   },
 });

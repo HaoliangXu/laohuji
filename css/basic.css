@@ -1,5 +1,7 @@
 body{
   background-color:#2D2D2D ;
+  color: #cca;
+  text-align: center;
 }
 .app{
   display: block;
@@ -28,6 +30,8 @@ body{
   width: 50px;
   height: 50px;
   z-index: 100;
+  line-height: 50px;
+  font-size: 30px;
 }
 .supPane{
   position: absolute;
@@ -99,6 +103,8 @@ body{
   height: 50px;
   background-repeat:no-repeat;
   background-image: url("../image/2.png"); 
+  line-height: 80px;
+  text-align: right;
 }
 .color0{
   //background-color: #4c6173;
@@ -321,6 +327,17 @@ body{
 }
 .controlPane>.button.flash{
   color: #999969;
+}
+.controlPane>.button>.colorMultiple{
+  color: #333;
+  line-height: 46px;
+  height: 46px;
+  display: block;
+}
+.controlPane>.button>.colorValue{
+  line-height: 20px;
+  display: block;
+  height: 20px;
 }
 .controlPane>.b0
 {

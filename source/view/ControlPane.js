@@ -25,10 +25,17 @@ enyo.kind({
       o.push(oi);
       this.weight[i] = 0;
     }
+    var c = ['x2', 'x2', 'x2', 'x10'];
+    for (i = 12; i < 16; i ++) {
+      o[i].components = [
+        {classes: 'colorMultiple', content: c[i - 12]},
+        {name:'color' + i, classes: 'colorValue', content: '00'}
+      ];
+    }
     this.createComponents(o);
-    this.$.button0.setContent('开始');
-    this.$.button1.setContent('投币');
-    this.$.button2.setContent('退币');
+    this.$.button0.setContent('start');
+    this.$.button1.setContent('insert');
+    this.$.button2.setContent('coinout');
 
     //initial weight[]
   },
@@ -36,7 +43,11 @@ enyo.kind({
   //set the value of any button which has number
   setValue: function (inKey, inValue) {
     inValue = inValue >= 10 ? '' + inValue : '0' + inValue;
-    this.$['button' + inKey].setContent(inValue);
+    if (inKey < 12) {
+      this.$['button' + inKey].setContent(inValue);
+      return;
+    }
+    this.$['color' + inKey].setContent(inValue);
   },
 
   handleClick: function(inSender) {

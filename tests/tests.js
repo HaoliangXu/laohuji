@@ -106,10 +106,6 @@ test('this.slotMachine.$.fetcher and statusPane', function() {
   this.slotMachine.$.fetcher.fetchData();
   deepEqual(this.slotMachine.$.statusPane.getProp(), [10, 1000, 10], 'test save date, fetchdata and statuspane');
   equal(typeof(this.slotMachine.$.fetcher.fetchRoundData), 'function', 'function exist');
-  //ok(this.slotMachine.$.fetcher.fetchRoundData(), 'and works');
-});
-/*
-test('gamePane', function() {
 });
 
 module('round generator', {
@@ -123,6 +119,6 @@ module('round generator', {
   },
 });
 test('round should work', function() {
-  ok(this.generator.round());
+  ok(this.generator.round, 'round method exist');
 });
 */
