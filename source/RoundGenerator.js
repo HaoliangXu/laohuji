@@ -68,13 +68,11 @@ enyo.kind({
     debug: {
       lamps: [10, 10, 50, 40, 25, 5, 10, 20, 2, 40, 5, 2, 10, 10, 2, 40, 20, 2, 10, 20, 2, 40 ,5, 2],//multiples for generator diff from the gamePane
       starting: [
-        0.8,//0.9 rates for small points, elses for big
+        0.8,//0.9 rates for small points, elses for sup
         0.1,//0.1 rates for xmbs
-      ],
-      big: [
-        0.7,//for 10 to 20 points, 0.8
-        0.1,//for 25 to 50 points, 0.1
-        0.2,//for sups, 0.1
+        0.2,//xmbs again
+        0.1,//0.1 for extra run
+        0.1,// for khc
       ],
       colors: [0,5,5,5,1],//should be [0,5,5,5,1] for real game
     },
@@ -159,69 +157,63 @@ enyo.kind({
   //generate a round then return
   round: function() {
     var data = {};
-    data.name = 'starting';
-    data.color = this.weightRandom(this.rates.colors);
-    data.target = this.reciprocal(this.rates.lamps);
-    //this.test();
-    if (this.fact.supLamps.indexOf(data.target) === -1) {//if small
-      if (this.randomRates(this.rates.starting[1])) {//if xmbs
-        data.next = this.xmbs(data.target, data.color, 0.3);
-      } else {
-        data.next = this.ending();
-      }
-      this.doGenerated(data);
-      return;
-    }
-    /*
-    //if big( 10 ,20 points lamp)
-    if (data.target in this.fact.bigLamps) {//if big
-      data.target = this.fact.bigLamps[this.randomSeed(9)];
-      if (this.randomRates(this.rates.starting[1])) {//if xmbs
-        data.next = this.xmbs(data.target, data.color, 0.1);
-      } else {
-        data.next = this.ending();
-      }
-      this.doGenerated(data);
-      return;
-    }
-    //if large(25 or 50 points lamp)
-    if (this.randomRates(this.rates.big[1] / (1 - this.rates.big[0]))) {
-      data.target = this.fact.largeLamps[this.randomSeed(2)];
-      data.next = this.ending();
-      this.doGenerated(data);
-      return;
-    }
-    */
-    //TODO sups 
-    data.target = this.fact.supLamps[this.randomSeed(4)];
-    data.next = this.khc(data.target, data.color);
+    this.starting(data, this.rates.starting[3]);
     this.doGenerated(data);
   },
-
-  khc: function(originalTarget, color) {
-    var o = {name: 'khc'};
-    o.len = this.randomSeed(12) + 1;
-    o.color = color;
-    o.originalTarget = originalTarget;
-    o.target = this.randomSeed(24);
-    o.next = this.ending();
-    return o;
-  },
-
-  xmbs: function(originalTarget, color, xmbsRate) {
-    var o = {name: 'xmbs'};
-    o.multiple = this.randomSeed(20) + 5;
-    o.target = originalTarget;
-    o.color = color;
-    if (this.randomRates(xmbsRate)) {
-      o.next = this.xmbs(originalTarget, color, xmbsRate);
-    } else {
-      o.next = this.ending();
+  starting: function(data, againRate) {
+    data.name = 'starting';
+    data.next = {};
+    data.color = this.weightRandom(this.rates.colors);
+    data.target = this.reciprocal(this.rates.lamps);
+    if (this.fact.supLamps.indexOf(data.target) === -1) {//if not sup
+      if (this.randomRates(this.rates.starting[1])) {//if xmbs
+        this.xmbs(data.next, data.target, data.color, this.rates.starting[2]);
+      } else if (this.randomRates(this.rates.starting[4])) {
+        this.khc(data.next, data.target, data.color);
+      } else if (this.randomRates(againRate /= 10)) {//extra run
+        this.starting(data.next);
+      } else {
+        this.ending(data.next);
+      }
+      return;
     }
-    return o;
+    //if sups 
+    this.suprise(data.next, data.target, data.color);
   },
 
-  ending: function() {
-    return {name: 'ending'};
+  suprise: function(data, originalTarget, color){
+    data.name = 'suprise';
+    data.target = this.randomSeed(1);
+    data.next = {};
+    data.originalTarget = originalTarget;
+    data.color = color;
+    this[this.fact.sups[data.target]](data.next, originalTarget, color);
+  },
+
+  khc: function(data, originalTarget, color) {
+    data.name = 'khc';
+    data.next = {};
+    data.len = this.randomSeed(12) + 1;
+    data.color = color;
+    data.originalTarget = originalTarget;
+    data.target = this.randomSeed(24);
+    this.ending(data.next);
+  },
+
+  xmbs: function(data, originalTarget, color, xmbsRate) {
+    data.name = 'xmbs';
+    data.next = {};
+    data.multiple = this.randomSeed(20) + 5;
+    data.target = originalTarget;
+    data.color = color;
+    if (this.randomRates(xmbsRate)) {
+      this.xmbs(data.next, originalTarget, color, xmbsRate);
+    } else {
+      this.ending(data.next);
+    }
+  },
+
+  ending: function(data) {
+    data.name = 'ending';
   }
 });

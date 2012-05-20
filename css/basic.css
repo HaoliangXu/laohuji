@@ -48,9 +48,12 @@ body{
   height: 54px;
   line-height: 54px;
   color: transparent;
+  font-size: 25px;
 }
-.gamePane>.supPane.show{
-  color: #744;
+.gamePane>.supPane>.show{
+  color: #799;
+  border: 1px solid #776;
+  background-color: #433;
 }
 
 .sl0

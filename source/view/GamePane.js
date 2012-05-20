@@ -79,19 +79,12 @@ enyo.kind({
     this.createComponents(o);
     o = [];
     for (i = 0; i < 8; i ++) {
-      oi = {name: 'supLamp' + i, classes: 'supLamp sl' + i};
+      oi = {name: 'supLamp' + i, classes: 'supLamp sl' + i, content: this.fact.sups[i]};
       o.push(oi);
     }
     this.$.supPane.createComponents(o, {owner: this});
 
     this.setLamps([0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0])
-  },
-  Lamp : function(inLamp, inColor) {
-    this.lamp = inLamp;
-    this.color = inColor;
-    this.setColor = function(inColor) {
-      this.color = inColor;
-    };
   },
 
   //set main lamps, depend on the inArray
@@ -115,13 +108,26 @@ enyo.kind({
     this.lampStatusArray[i] = inStatus;
   },
 
+  //set a supLamp
+  supLampOff: function(i) {
+    this.$['supLamp' + i].removeClass('show');
+  },
+  supLampOn: function(i) {
+    this.$['supLamp' + i].addClass('show');
+  },
+
   start: function(roundData) {
+    var i;
     this.log(roundData);
+    for (i = 0; i < 8; i ++) {
+      this.supLampOff(i);
+    }
     this.weight = roundData.weight;
     //delete roundData.weight;// not nessesary
     this.launchProcessor(roundData);
   },
 
+  //cpu, excute all acts
   launchProcessor: function(roundData) {
     if (!roundData.name) {
       this.error('roundData error');
@@ -164,15 +170,15 @@ enyo.kind({
     i = 95 - this.pointer.lamp + roundData.target;
     while (i --) {
       time += 50;
-      //this.log((roundData.target - i + 96)%24);
       setTimeout(jpNum, time, this.fact.multiples[(roundData.target - i + 96)%24]);
       setTimeout(move, time, this.randomSeed(4) + 1);
     }
     time += 50;
     setTimeout(move, time, roundData.color);
-    time += 100;
+    time += 1000;
     setTimeout((function(){
-      var data = {target: roundData.target, color: roundData.color};
+      //???
+      //var data = {target: roundData.target, color: roundData.color};
       this.doAddBonus(bonus);
       this.launchProcessor(roundData.next);
     }).bind(this), time);
@@ -195,7 +201,7 @@ enyo.kind({
     bonus = {bonus: bonus};
 
     var i = 23;
-    var time = 200;
+    var time = 0;
     var jpNum = this.jpNum.bind(this);
     var flashIn = function() {
       this.$.emulator.prependLamp(roundData.color);
@@ -281,5 +287,36 @@ enyo.kind({
   },
   ending: function() {
     this.doShowFinished();
+  },
+  suprise: function(roundData) {
+    var i;
+    var time = 0;
+    var order = [0, 1, 2, 3, 4, 5, 6, 7];
+    var order2 = [0, 1, 2, 3, 4, 5, 6, 7];
+    var compareFunc = function(a, b) {
+      return Math.random() > 0.5 ? -1 : 1;
+    };
+    var toggle = function(i) {
+      this.supLampOn(order[i]);
+      this.supLampOff(order[i - 1]);
+    }.bind(this);
+    order.sort(compareFunc);
+    order2.sort(compareFunc);
+    if (order2[0] === order[7]) {
+      order2[0] += order2[1];
+      order2[1] = order2[0] - order2[1];
+      order2[0] -= order2[1];
+    }
+    order = order.concat(order2);
+    this.supLampOn(order[0]);
+    for (i = 1; i < 16; i ++) {
+      setTimeout(toggle, time += 400, i);
+    }
+    setTimeout(this.supLampOff.bind(this), time, order[15]);
+    setTimeout(this.supLampOn.bind(this), time, roundData.target);
+    time += 500;
+    setTimeout((function(){
+      this.launchProcessor(roundData.next);
+    }).bind(this), time + 100);
   },
 });

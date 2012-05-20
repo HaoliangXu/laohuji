@@ -70,7 +70,6 @@ enyo.kind({
     debug: function(id) {
       var data = {};
       this.$.fetcher.setUsername(id);
-      this.log(localStorage.getItem('coins'));
       data = localStorage.getItem('coins');
       if (!data && data !== 0) {
         data = {};
