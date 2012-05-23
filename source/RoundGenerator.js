@@ -165,11 +165,7 @@ enyo.kind({
     data.next = {};
     data.color = this.weightRandom(this.rates.colors);
     data.target = this.reciprocal(this.rates.lamps);
-<<<<<<< HEAD
     //data.target = 3;//test
-=======
-    data.target = 3;//test
->>>>>>> 6dffdf9cf741b523c498a88eb8bc8864c7b1ff76
     if (this.fact.supLamps.indexOf(data.target) === -1) {//if not sup
       if (this.randomRates(this.rates.starting[1])) {//if xmbs
         this.xmbs(data.next, data.target, data.color, this.rates.starting[2]);
