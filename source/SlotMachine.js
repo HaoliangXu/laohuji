@@ -168,29 +168,29 @@ enyo.kind({
     }
     //items clicked
     if (4 <= index && index <= 11) {
-      if (prop.points > 0 && this.weight[index - 4] < 99) {
+      if (prop.points > 0 && this.$.controlPane.weight[index - 4] < 99) {
         if (!this.alreadyBet) {
           this.weight = [0,0,0,0,0,0,0,0,0,0,0,0];
+          this.alreadyBet = true;
         }
         this.weight[index - 4] ++;
         inSender.setValue(index, this.weight[index - 4]);
         prop.points --;
         this.setProp(prop);
-        this.alreadyBet = true;
       }
       return;
     }
     //color clicked
     if (12 <= index) {
-      if (prop.points > 9 && this.weight[index - 4] < 90) {
+      if (prop.points > 9 && this.$.controlPane.weight[index - 4] < 90) {
         if (!this.alreadyBet) {
           this.weight = [0,0,0,0,0,0,0,0,0,0,0,0];
+          this.alreadyBet = true;
         }
         this.weight[index - 4] += 10;
         inSender.setValue(index, this.weight[index - 4]);
         prop.points -= 10;
         this.setProp(prop);
-        this.alreadyBet = true;
       }
       return;
     }

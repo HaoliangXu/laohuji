@@ -66,13 +66,13 @@ enyo.kind({
   },
   rates: {
     debug: {
-      lamps: [10, 10, 50, 40, 25, 5, 10, 20, 2, 40, 5, 2, 10, 10, 2, 40, 20, 2, 10, 20, 2, 40 ,5, 2],//multiples for generator diff from the gamePane
+      lamps: [10, 10, 50, 30, 25, 5, 10, 20, 2, 30, 5, 2, 10, 10, 2, 30, 20, 2, 10, 20, 2, 30 ,5, 2],//multiples for generator diff from the gamePane
       starting: [
         0.1,//0.8 rates for small points, elses for sup
         0.1,//0.1 rates for xmbs
-        0.2,//xmbs again
-        0.1,//0.1 for extra run
-        0.1,// for khc
+        0.2,//0.2xmbs again
+        0.05,//0.1 for extra run
+        0.05,//0.1 for khc
       ],
       colors: [0,5,5,5,1],//should be [0,5,5,5,1] for real game
     },

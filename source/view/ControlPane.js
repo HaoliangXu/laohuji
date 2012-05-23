@@ -23,7 +23,6 @@ enyo.kind({
     for (i = 0; i < 16; i ++) {
       oi = {name: 'button' + i, classes: 'button b' + i, content: '00', onclick: 'handleClick'};
       o.push(oi);
-      this.weight[i] = 0;
     }
     var c = ['x2', 'x2', 'x2', 'x10'];
     for (i = 12; i < 16; i ++) {
@@ -38,10 +37,14 @@ enyo.kind({
     this.$.button2.setContent('coinout');
 
     //initial weight[]
+    for (i = 0; i < 12; i ++) {
+      this.weight[i] = 0;
+    }
   },
 
   //set the value of any button which has number
   setValue: function (inKey, inValue) {
+    this.weight[inKey - 4] = inValue;
     inValue = inValue >= 10 ? '' + inValue : '0' + inValue;
     if (inKey < 12) {
       this.$['button' + inKey].setContent(inValue);
