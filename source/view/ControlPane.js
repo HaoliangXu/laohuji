@@ -8,7 +8,6 @@ enyo.kind({
   kind: 'Control',
   classes: 'controlPane',
   justFinishLastGame: false,
-  weight: [],
   events: {
     onButtonClicked: '',
   },
@@ -35,16 +34,10 @@ enyo.kind({
     this.$.button0.setContent('start');
     this.$.button1.setContent('insert');
     this.$.button2.setContent('coinout');
-
-    //initial weight[]
-    for (i = 0; i < 12; i ++) {
-      this.weight[i] = 0;
-    }
   },
 
   //set the value of any button which has number
   setValue: function (inKey, inValue) {
-    this.weight[inKey - 4] = inValue;
     inValue = inValue >= 10 ? '' + inValue : '0' + inValue;
     if (inKey < 12) {
       this.$['button' + inKey].setContent(inValue);
