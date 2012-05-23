@@ -6,6 +6,10 @@ enyo.kind({
   name: 'dili.GamePane',
   kind: 'Control',
   classes: 'gamePane',
+  events: {
+    onRequestNarrator: '',
+    onRequestSound: '',
+  },
   lampStatusArray: [],//record the current status of main lamps
   pointer: {lamp: 3, color: 1},//lamp number and color number
   fact: {

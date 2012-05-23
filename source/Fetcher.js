@@ -1,5 +1,12 @@
 /****
  * Fetcher is a role to connect server or generate local data
+ * Public method
+ *  readProp
+ *  saveProp
+ *  fetchRoundData
+ * all data transportation use event model for ajax
+ * all data transportation call sendData all called by receiveData
+ *
  */
 enyo.kind({
   name: 'dili.Fetcher',
@@ -8,8 +15,10 @@ enyo.kind({
     username: '',
   },
   events: {
-    onGotData: '',
+    onGotProp: '',
     onGotRoundData: '',
+    onGotErr: '',
+    onPropSaved: '',
   },
   create: function() {
     this.inherited( arguments );
@@ -20,14 +29,13 @@ enyo.kind({
   setupMethods: function () {
     if (window.dili.prefs.DEBUG === true) {
       this.createComponent({
-        name: 'generator',
-        kind: 'dili.RoundGenerator',
-        onGenerated: 'handleGenerated',
+        name: 'server',
+        kind: 'dili.LocalServer',
+        onGotErr: 'handleErr',
+        //all data through this methods below
+        onSendData: 'receiveData',
       });
-      this.fetchData = this.fetchData.debug;
-      this.saveData = this.saveData.debug;
-      this.fetchRoundData = this.fetchRoundData.debug;
-      this.handleGenerated = this.handleGenerated.debug;
+      this.sendData = this.sendData.debug;
     } else {
     }
   },
@@ -35,35 +43,55 @@ enyo.kind({
 //* @public
 
   //get data,will be replaced by its child, depends on prefs
-  fetchData: {
-    debug: function() {
-      var data = {};
-      data.bonus = localStorage.getItem('bonus');
-      data.points = localStorage.getItem('points');
-      data.coins = localStorage.getItem('coins');
-      this.doGotData(data);
-    },
+  readProp: function() {
+    var data = {};
+    data.type = 'readProp';
+    this.sendData(data);
   },
 
   //save data, will be replaced
-  saveData: {
-    debug: function(data) {
-      var i;
-      for (i in data) {
-        localStorage.setItem(i, data[i]);
-      }
-    },
+  saveProp: function(data) {
+    var d = {};
+    var i;
+    for (i in data) {
+      d[i] = data[i];
+    }
+    d.type = 'saveProp';
+    this.sendData(d);
   },
 
   //fetch round data, for a round of game, to be replaced
-  fetchRoundData: {
-    debug: function(weight) {
-      this.$.generator.round();
-    },
+  fetchRoundData: function(weight) {
+    var data = {};
+    data.type = 'fetchRoundData';
+    data.weight = weight;
+    this.sendData(data);
   },
-  handleGenerated: {
-    debug: function(inSender, roundData) {
-      this.doGotRoundData(roundData);
-    },
+
+  //all data send to here
+  sendData: {
+    debug: function(data) {
+      this.$.server.receiveData(data);
+    }
+  },
+  receiveData: function(inSender, data) {
+    switch (data.type) {
+      case 'gotRoundData':
+        delete data.type;
+        this.doGotRoundData(data);
+        break;
+      case 'propSaved':
+        delete data.type;
+        this.doPropSaved();
+        break;
+      case 'gotProp':
+        delete data.type;
+        this.doGotProp(data);
+        break;
+      case 'error':
+        delete data.type;
+        this.doGotErr(data.e);
+        break;
+    }
   },
 });

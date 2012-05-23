@@ -29,6 +29,8 @@ enyo.kind({
       kind: 'dili.GamePane',
       onShowFinished: 'handleShowFinish',
       onAddBonus: 'handleAddBonus',
+      onRequestNarrator: 'handleNarratorRequest',
+      onRequestSound: 'handleSoundRequest',
     },
     {
       name: 'statusPane',
@@ -43,9 +45,16 @@ enyo.kind({
     {
       name: 'fetcher',
       kind: 'dili.Fetcher',
-      onGotData: 'handleData',
+      onGotProp: 'handleGotProp',
       onGotRoundData: 'handleRoundData',
-      onFetchFailed: 'handleFetchFailed',
+      onGotErr: 'handleGotErr',
+    },
+    {
+      name: 'narrator',
+    },
+    {
+      name: 'soundController',
+      kind: 'dili.SoundController',
     },
   ],
   create: function() {
@@ -70,23 +79,16 @@ enyo.kind({
     debug: function(id) {
       var data = {};
       this.$.fetcher.setUsername(id);
-      data = localStorage.getItem('coins');
-      if (!data && data !== 0) {
-        data = {};
-        data.coins = 100;
-        data.points = 0;
-        data.bonus = 0;
-        this.$.fetcher.saveData(data);
-      }
       this.gameStatus = 'fetching';
-      this.$.fetcher.fetchData();
+      this.$.fetcher.readProp();
+      //TODO better event in newest Enyo
       this.handleKeyPress();
       window.addEventListener("keypress", this.handleKeyPress.bind(this));
     }
   },
 
   //handle data
-  handleData: function(inSender, data) {
+  handleGotProp: function(inSender, data) {
     var i;
     this.gameStatus = 'waiting';
     for (i in data) {
@@ -125,6 +127,7 @@ enyo.kind({
       if (this.alreadyBet) {
         inSender.disableAll(true);
         this.gameStatus = 'fetching';
+        //TODO need to save weight and prop here for data accuracy
         this.$.fetcher.fetchRoundData(this.weight);
         return;
       }
@@ -209,7 +212,7 @@ enyo.kind({
   //handle show in game Pane finished
   handleShowFinish: function(inSender) {
     var i;
-    this.$.fetcher.saveData(this.prop);
+    this.$.fetcher.saveProp(this.prop);
     this.alreadyBet = false;
     this.$.controlPane.disableAll(false);
     for (i = 4; i < 16; i ++) {
@@ -225,8 +228,8 @@ enyo.kind({
     this.setProp(a);
   },
 
-  handleFetchFailed: function() {
-    window.alert('fetch data failed, restart game');
+  handleGotErr: function() {
+    window.alert('Err');
   },
   triggerEasterEgg: function() {
     if (this.gameStatus != 'waiting') return;
@@ -240,5 +243,11 @@ enyo.kind({
     b.points = this.prop.points;
     b.bonus = this.prop.bonus;
     this.$.statusPane.setProp(b);
+  },
+
+  handleNarratorRequest: function (inSender, inMsg) {
+  },
+
+  handleSoundRequest: function (inSender, inSound) {
   },
 });
