@@ -1,0 +1,19 @@
+enyo.depends(
+  //'lib/enyo/onyx.js',
+  //'lib/enyo/onyx.css',
+  'source/SlotMachine.js',
+  'source/SlotMachineApp.js',
+  'source/L11n.js',
+  'source/Prefs.js',
+  'source/RoundGenerator.js',
+  'source/Fetcher.js',
+  'source/Emulator.js',
+  'source/view/AboutView.js',
+  'source/view/ControlPane.js',
+  'source/view/GamePane.js',
+  'source/view/HelpView.js',
+  'source/view/Login.js',
+  'source/view/SettingsView.js',
+  'source/view/StatusPane.js',
+  'css/basic.css'
+);
