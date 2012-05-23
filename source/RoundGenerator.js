@@ -62,13 +62,13 @@ enyo.kind({
     bigLamps: [0, 1, 6, 7, 12, 13, 16, 18, 19],
     largeLamps: [2, 4],
     supLamps: [3, 9, 15, 21],
-    sups: ['khc', 'ktc', 'kdk', 'kld', 'kcb', 'kkd', 'ksh', 'kmh'],
+    sups: ['khc', 'kdk', 'ktc', 'kld', 'kcb', 'kkd', 'ksh', 'kmh'],
   },
   rates: {
     debug: {
       lamps: [10, 10, 50, 40, 25, 5, 10, 20, 2, 40, 5, 2, 10, 10, 2, 40, 20, 2, 10, 20, 2, 40 ,5, 2],//multiples for generator diff from the gamePane
       starting: [
-        0.8,//0.9 rates for small points, elses for sup
+        0.1,//0.8 rates for small points, elses for sup
         0.1,//0.1 rates for xmbs
         0.2,//xmbs again
         0.1,//0.1 for extra run
@@ -165,6 +165,7 @@ enyo.kind({
     data.next = {};
     data.color = this.weightRandom(this.rates.colors);
     data.target = this.reciprocal(this.rates.lamps);
+    data.target = 3;//test
     if (this.fact.supLamps.indexOf(data.target) === -1) {//if not sup
       if (this.randomRates(this.rates.starting[1])) {//if xmbs
         this.xmbs(data.next, data.target, data.color, this.rates.starting[2]);
@@ -183,7 +184,7 @@ enyo.kind({
 
   suprise: function(data, originalTarget, color){
     data.name = 'suprise';
-    data.target = this.randomSeed(1);
+    data.target = 1;//this.randomSeed(1); TODO for test
     data.next = {};
     data.originalTarget = originalTarget;
     data.color = color;
@@ -200,11 +201,25 @@ enyo.kind({
     this.ending(data.next);
   },
 
+  kdk: function(data, originalTarget, color) {
+    var i;
+    data.name = 'kdk',
+    data.next = {};
+    data.colorLine = [color];
+    for (i = 1; i < 24; i ++) {
+      data.colorLine[i] = this.randomSeed(4) + 1;
+    }
+    data.color = color;
+    data.originalTarget = originalTarget;
+    this.ending(data.next);
+  },
+
   xmbs: function(data, originalTarget, color, xmbsRate) {
     data.name = 'xmbs';
     data.next = {};
     data.multiple = this.randomSeed(20) + 5;
     data.target = originalTarget;
+    data.originalTarget = originalTarget;
     data.color = color;
     if (this.randomRates(xmbsRate)) {
       this.xmbs(data.next, originalTarget, color, xmbsRate);

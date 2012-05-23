@@ -48,6 +48,7 @@ enyo.kind({
   back: function() {
     this.offset = (this.offset + 23) % 24;
   },
+  //change a lamp color. order is the this.lamps color not the real lamp color
   changeLampColor: function(order, color) {
     this.lamps[order] = color;
   },

@@ -51,7 +51,7 @@ enyo.kind({
     bigLamps: [0, 1, 6, 7, 12, 13, 16, 18, 19],
     largeLamps: [2, 4],
     supLamps: [3, 9, 15, 21],
-    sups: ['khc', 'ktc', 'kdk', 'kld', 'kcb', 'kkd', 'ksh', 'kmh'],
+    sups: ['khc', 'kdk', 'ktc', 'kld', 'kcb', 'kkd', 'ksh', 'kmh'],
   },
 
   weight: [],
@@ -285,6 +285,48 @@ enyo.kind({
       this.launchProcessor(roundData.next);
     }).bind(this), time + 100);
   },
+
+  kdk: function(roundData) {
+    var i;
+    var time = 0;
+    var flashIn = function(c) {
+      this.$.emulator.prependLamp(c);
+      this.setLamps(this.$.emulator.getLampsArray());
+    }.bind(this);
+    var flashOut = function() {
+      this.$.emulator.removeLamp(0, 1);
+      this.setLamps(this.$.emulator.getLampsArray());
+    }.bind(this);
+    var turnOff = function(index) {
+      //add bonus every lamp
+      var bonus = 0;
+      var currentTarget = (roundData.target + index) % 24;
+      var multiple = 10;
+      var weight = this.weight[roundData.colorLine[index] + 7];
+      bonus = weight * multiple;
+      bonus = {bonus: bonus};
+      this.doAddBonus(bonus);
+
+      this.$.emulator.changeLampColor(index, 0);
+      this.setLamps(this.$.emulator.getLampsArray());
+    }.bind(this);
+    var turnOn = function(index) {
+      this.$.emulator.changeLampColor(index, roundData.colorLine[index]);
+      this.setLamps(this.$.emulator.getLampsArray());
+    }.bind(this);
+    for (i = 1; i < 24; i ++) {
+      setTimeout(flashIn, time += 50, roundData.colorLine[i]);
+    }
+    time += 400;
+    for (i = 23; i > 0; i --) {
+      setTimeout(turnOn, time += 300, i);
+      setTimeout(turnOff, time += 700, i);
+    }
+    setTimeout((function(){
+      this.launchProcessor(roundData.next);
+    }).bind(this), time + 100);
+  },
+
   ending: function() {
     this.doShowFinished();
   },
