@@ -11,9 +11,12 @@ enyo.kind({
     {name: 'move1', kind: 'Sound', src: 'audio/move1.wav'},
     {name: 'move2', kind: 'Sound', src: 'audio/move2.wav'},
     {name: 'move3', kind: 'Sound', src: 'audio/move3.wav'},
+    {name: 'khcBonus0', kind: 'Sound', src: 'audio/khcBonus0.wav'},
+    {name: 'khcBonus1', kind: 'Sound', src: 'audio/khcBonus1.wav'},
+    {name: 'khcMove', kind: 'Sound', src: 'audio/khcMove.wav', loop: true},
     {name: 'moveLoop', kind: 'Sound', src: 'audio/moveLoop.wav', loop: true},
     {name: 'drumroll', kind: 'Sound', src: 'audio/drumroll.wav', loop: true},
-    {name: 'hit', kind: 'Sound', src: 'audio/hit.wav', loop: true},
+    {name: 'hit', kind: 'Sound', src: 'audio/hit.wav'},
     {name: 'split', kind: 'Sound', src: 'audio/split.wav'},
   ],
   create: function () {
@@ -61,6 +64,7 @@ enyo.kind({
 	create: function() {
 		this.inherited(arguments);
 		this.srcChanged();
+		this.loopChanged();
 	},
 	srcChanged: function() {
 		var path = enyo.path.rewrite(this.src);

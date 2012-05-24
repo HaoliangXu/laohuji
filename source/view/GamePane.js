@@ -170,8 +170,8 @@ enyo.kind({
       this.setLamps(this.$.emulator.getLampsArray());
     }.bind(this);
     i = 95 - this.pointer.lamp + roundData.target;
+    this.doRequestSound({type: 'sound', name: 'moveLoop'});
     while (i --) {
-      this.doRequestSound({type: 'sound', name: 'moveLoop'});
       setTimeout(jpNum, time, this.fact.multiples[(roundData.target - i + 96)%24]);
       setTimeout(move, time += 50, this.randomSeed(4) + 1);
     }
@@ -230,11 +230,12 @@ enyo.kind({
       setTimeout(flashIn, time += 40);
     }
     setTimeout(this.doRequestSound.bind(this), time, {type: 'stop', name: 'drumroll'});
+    setTimeout(this.doRequestSound.bind(this), time, {type: 'play', name: 'khcBonus1'});
       setTimeout(jpNum, time, roundData.multiple);
     setTimeout((function(){
       this.launchProcessor(roundData.next);
       this.doAddBonus(bonus);
-    }).bind(this), time + 100);
+    }).bind(this), time + 1000);
   },
 
   khc: function(roundData) {
@@ -276,19 +277,23 @@ enyo.kind({
     }
     time += 1000;
     i = 96 - len - this.pointer.lamp + roundData.target;
+    setTimeout(this.doRequestSound.bind(this), time, {type:'play', name:'khcMove'});
     while (i --) {
       setTimeout(move, time += 100);
     }
+    setTimeout(this.doRequestSound.bind(this), time, {type: 'stop', name: 'khcMove'});
     time += 1000;
     i = roundData.len;
     j = len;
     while (i --) {
       setTimeout(turnOff, time += 700);
+      setTimeout(this.doRequestSound.bind(this), time, {type:'play', name:'khcBonus0'});
       setTimeout(turnOn, time += 300);
+      setTimeout(this.doRequestSound.bind(this), time, {type:'play', name:'khcBonus1'});
     }
     setTimeout((function(){
       this.launchProcessor(roundData.next);
-    }).bind(this), time + 100);
+    }).bind(this), time + 500);
   },
 
   kdk: function(roundData) {

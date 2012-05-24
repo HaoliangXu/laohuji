@@ -72,8 +72,8 @@ enyo.kind({
         0.1,//0.8 rates for small points, elses for sup
         0.1,//0.1 rates for xmbs
         0.2,//0.2xmbs again
-        0.05,//0.1 for extra run
-        0.05,//0.1 for khc
+        0.07,//0.1 for extra run
+        0.07,//0.1 for khc
       ],
       colors: [0,5,5,5,1],//should be [0,5,5,5,1] for real game
     },
