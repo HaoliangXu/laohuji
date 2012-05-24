@@ -6,10 +6,6 @@ enyo.kind({
   name: 'dili.GamePane',
   kind: 'Control',
   classes: 'gamePane',
-  events: {
-    onRequestNarrator: '',
-    onRequestSound: '',
-  },
   lampStatusArray: [],//record the current status of main lamps
   pointer: {lamp: 3, color: 1},//lamp number and color number
   fact: {
@@ -60,6 +56,8 @@ enyo.kind({
 
   weight: [],
   events: {
+    onRequestNarrator: '',
+    onRequestSound: '',
     onShowFinished:'',
     onAddBonus: '',
   },
@@ -162,7 +160,7 @@ enyo.kind({
     bonus = {bonus: bonus};
 
     var i, move, distance, bonus;
-    var time = 0;
+    var time = 50;
     this.$.emulator.init(this.pointer.lamp, this.pointer.color);
     this.setLamps(this.$.emulator.getLampsArray());
     var jpNum = this.jpNum.bind(this);
@@ -173,16 +171,15 @@ enyo.kind({
     }.bind(this);
     i = 95 - this.pointer.lamp + roundData.target;
     while (i --) {
-      time += 50;
+      this.doRequestSound({type: 'sound', name: 'moveLoop'});
       setTimeout(jpNum, time, this.fact.multiples[(roundData.target - i + 96)%24]);
-      setTimeout(move, time, this.randomSeed(4) + 1);
+      setTimeout(move, time += 50, this.randomSeed(4) + 1);
     }
     time += 50;
+    setTimeout(this.doRequestSound.bind(this), time, {type: 'stop', name: 'moveLoop'});
     setTimeout(move, time, roundData.color);
     time += 1000;
     setTimeout((function(){
-      //???
-      //var data = {target: roundData.target, color: roundData.color};
       this.doAddBonus(bonus);
       this.launchProcessor(roundData.next);
     }).bind(this), time);
@@ -215,6 +212,7 @@ enyo.kind({
       this.$.emulator.removeLamp(0, 1);
       this.setLamps(this.$.emulator.getLampsArray());
     }.bind(this);
+    setTimeout(this.doRequestSound.bind(this), time, {type: 'play', name: 'split'});
     while (i --) {
       setTimeout(flashIn, time += 50);
     }
@@ -225,11 +223,13 @@ enyo.kind({
     }
     time += 800;
     i = 22;
+    setTimeout(this.doRequestSound.bind(this), time, {type: 'play', name: 'drumroll'});
     while (i --) {
       setTimeout(jpNum, time, this.randomSeed(30));
       setTimeout(flashOut, time += 40);
       setTimeout(flashIn, time += 40);
     }
+    setTimeout(this.doRequestSound.bind(this), time, {type: 'stop', name: 'drumroll'});
       setTimeout(jpNum, time, roundData.multiple);
     setTimeout((function(){
       this.launchProcessor(roundData.next);
@@ -239,6 +239,7 @@ enyo.kind({
 
   khc: function(roundData) {
     var expand = function() {
+      this.doRequestSound({type: 'play', name: 'hit'});
       this.$.emulator.prependLamp(roundData.color);
       this.setLamps(this.$.emulator.getLampsArray());
     }.bind(this);

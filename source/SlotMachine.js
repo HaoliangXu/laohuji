@@ -176,6 +176,7 @@ enyo.kind({
         this.alreadyBet = true;
       }
       if (prop.points > 0 && this.weight[index - 4] < 99) {
+        this.$.soundController.playASound('click');
         this.weight[index - 4] ++;
         inSender.setValue(index, this.weight[index - 4]);
         prop.points --;
@@ -219,6 +220,7 @@ enyo.kind({
       this.$.controlPane.setValue(i, 0);
     }
     this.gameStatus = 'waiting';
+    this.$.soundController.playASound('end');
   },
   handleAddBonus: function(inSender, inData) {
     var a = {};
@@ -249,5 +251,14 @@ enyo.kind({
   },
 
   handleSoundRequest: function (inSender, inSound) {
+    if (inSound.type === 'cycle') {
+      this.$.soundController.playCycle(inSound.name);
+      return
+    }
+    if (inSound.type === 'stop') {
+      this.$.soundController.stopASound(inSound.name);
+      return;
+    }
+    this.$.soundController.playASound(inSound.name);
   },
 });
