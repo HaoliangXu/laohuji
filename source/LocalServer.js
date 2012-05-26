@@ -143,11 +143,11 @@ enyo.kind({
   //seed supposed to be any integer greater than 0
   //result should in [0, seeds)
   randomSeed: function(seed) {
-    return parseInt((Math.random() * seed));
+    return parseInt((Math.random() * seed), 10);
   },
 
   normalDistribution: function(high) {
-    return parseInt((Math.random() + Math.random())  / 2 * high);
+    return parseInt((Math.random() + Math.random())  / 2 * high, 10);
   },
 
   //for rates that diff in weights
