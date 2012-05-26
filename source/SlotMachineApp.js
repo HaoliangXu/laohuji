@@ -5,8 +5,15 @@
 enyo.kind({
   name: 'dili.SlotMachineApp',
   kind: 'Control',
-  classes: 'enyo-unselectable app',
+  classes: 'onyx app enyo-unselectable',
   components: [
+    {kind: 'onyx.Toolbar', components: [
+      {content: 'Slot Machine', style: 'float: left'},
+      {kind: 'onyx.Button', content: 'logout',style: 'float: right'},
+      {kind: 'onyx.InputDecorator',style: 'float: right; color: #878889', components: [
+        {content: 'User Name', classes: 'onyx-groupbox-header'},
+      ]},
+    ]},
     {
       name: 'slotMachine',
       kind: 'dili.SlotMachine',

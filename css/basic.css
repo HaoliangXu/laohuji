@@ -1,17 +1,19 @@
 body{
+}
+.app{
   background-color:#2D2D2D ;
   color: #cca;
   text-align: center;
-}
-.app{
-  display: block;
-  width: 900px;
-  height: 600px;
+  //display: block;
+  //width: 900px;
+  //height: 600px;
 }
 .app div{
-  display: inline-block;
+  //display: inline-block;
 }
 .app>.slotMachine{
+  width: 900px;
+  margin: auto;
 }
 .app>.slotMachine>.gamePane{
   margin: 30px;
@@ -283,6 +285,7 @@ body{
   display: block;
 }
 .controlBanner{
+  display: inline-block;
   background-color: #584939;
   margin: 7px 7px 10px 0px;
   text-align:center;
@@ -291,6 +294,7 @@ body{
   color: #899;
 }
 .controlNumber{
+  display: inline-block;
   background-color: #595955;
   margin: 0px 7px 7px 0px;
   text-align:center;
@@ -301,6 +305,7 @@ body{
 
 
 .controlPane{
+  display: inline-block;
   float: right;
   position: relative;
   width: 300px;
@@ -308,22 +313,25 @@ body{
   margin-right: 14px;
 }
 .controlPane>.button{
+  //display: inline-block;
   color: #aa8;
   margin: 4px;
+  padding: 0px;
   background-color: #404040;
-  border: 3px solid #353535;
+  //border: 3px solid #353535;
   text-align: center;
   width: 56px;
-  height: 64px;
+  height: 66px;
   line-height:114px;
   background-image: url("../image/2.png"); 
 }
+/*
 .controlPane>.button:hover{
   background-color: #606555;
   width: 60px;
   height: 66px;
   border:1px dashed #444;
-}
+}*/
 .controlPane>.button.disable{
   border-color: #222;
   color: #111;

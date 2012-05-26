@@ -1,6 +1,6 @@
 enyo.depends(
-  //'lib/enyo/onyx.js',
-  //'lib/enyo/onyx.css',
+  'lib/onyx/onyx.js',
+  'lib/onyx/onyx.css',
   'source/SlotMachine.js',
   'source/SlotMachineApp.js',
   'source/L11n.js',

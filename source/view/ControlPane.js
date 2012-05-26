@@ -20,7 +20,7 @@ enyo.kind({
     var i, oi;
     var o = [];
     for (i = 0; i < 16; i ++) {
-      oi = {name: 'button' + i, classes: 'button b' + i, content: '00', onclick: 'handleClick'};
+      oi = {name: 'button' + i, kind:'onyx.Button', classes: 'button b' + i, content: '00', onclick: 'handleClick'};
       o.push(oi);
     }
     var c = ['x2', 'x2', 'x2', 'x10'];
