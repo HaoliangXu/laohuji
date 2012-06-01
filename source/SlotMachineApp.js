@@ -14,6 +14,10 @@ enyo.kind({
       name: 'slotMachine',
       kind: 'dili.SlotMachine',
     },
+    {classes: 'footer', components: [
+       {content: 'It is a gambling game. [insert] coins, bet on any vegetables or colors, then [start]'},
+       {content: 'Key [G] for insert, [T] for start, [Q][W][E][R][A][S][D][F] for vagetables, [Z][X][C][V] for colors'}
+    ]},
     {
       name: 'login',
       kind: 'dili.Login',

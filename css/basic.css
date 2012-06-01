@@ -425,3 +425,15 @@ visibility:hidden;
    background-image: none;
    background-color: #afdab2;
 }
+.footer{
+   color: #333;
+   display: block;
+   position: fixed;
+   width: 100%;
+   bottom: 0;
+   height: 40px;
+   background-color: #F0F0ED;
+}
+.footer>div{
+   text-align: center;
+}
