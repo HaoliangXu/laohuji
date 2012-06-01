@@ -80,8 +80,12 @@ enyo.kind({
   //detect language
   detectLanguage: function() {
     var lang = window.navigator.language;
-    lang = lang.substr(0,2);
-    this.LANGUAGE = lang;
+    if (lang) {
+       lang = lang.substr(0,2);
+       this.LANGUAGE = lang;
+    } else {
+       this.LANGUAGE = 'en';
+    }
   },
 
   //detect which features the device support
@@ -89,6 +93,10 @@ enyo.kind({
     //TODO really detection needed
     this.SUPPORT.sound = false;
     this.settings.soundOn = false;
+    if ((typeof Audio) !== undefined) {
+      this.SUPPORT.sound = true;
+      this.settings.soundOn = true;
+    }
   },
 
   //

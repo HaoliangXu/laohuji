@@ -110,14 +110,14 @@ enyo.kind({
   //reader users prop, like a server
   readProp: function() {
     var data = {};
-    if (localStorage.getItem('bonus') === null) {
-      localStorage.setItem('bonus', 0);
-      localStorage.setItem('points', 0);
-      localStorage.setItem('coins', 100);
+    if (window.localStorage.getItem('bonus') === null) {
+      window.localStorage.setItem('bonus', 0);
+      window.localStorage.setItem('points', 0);
+      window.localStorage.setItem('coins', 100);
     }
-    data.bonus = localStorage.getItem('bonus');
-    data.points = localStorage.getItem('points');
-    data.coins = localStorage.getItem('coins');
+    data.bonus = window.localStorage.getItem('bonus');
+    data.points = window.localStorage.getItem('points');
+    data.coins = window.localStorage.getItem('coins');
     data.type = 'gotProp';
     this.sendData(data);
   },

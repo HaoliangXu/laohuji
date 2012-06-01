@@ -52,10 +52,6 @@ enyo.kind({
     {
       name: 'narrator',
     },
-    {
-      name: 'soundController',
-      kind: 'dili.SoundController',
-    },
   ],
   create: function() {
     this.inherited(arguments);
@@ -71,6 +67,15 @@ enyo.kind({
       if (window.dili.prefs.REMOTE === true) {
       } else {
       }
+    }
+    if (window.dili.prefs.SUPPORT.sound === true) {
+      this.handleSoundRequest = this.handleSoundRequest.soundEnabled;
+      this.createComponent({
+        name: 'soundController',
+        kind: 'dili.SoundController',
+      });
+    } else {
+      this.handleSoundRequest = this.handleSoundRequest.mute;
     }
   },
 
@@ -176,7 +181,7 @@ enyo.kind({
         this.alreadyBet = true;
       }
       if (prop.points > 0 && this.weight[index - 4] < 99) {
-        this.$.soundController.playASound('click');
+        this.handleSoundRequest(this, {type: 'play', name: 'click'});
         this.weight[index - 4] ++;
         inSender.setValue(index, this.weight[index - 4]);
         prop.points --;
@@ -220,7 +225,7 @@ enyo.kind({
       this.$.controlPane.setValue(i, 0);
     }
     this.gameStatus = 'waiting';
-    this.$.soundController.playASound('end');
+    this.handleSoundRequest(this, {type: 'play', name: 'end'});
   },
   handleAddBonus: function(inSender, inData) {
     var a = {};
@@ -250,15 +255,18 @@ enyo.kind({
   handleNarratorRequest: function (inSender, inMsg) {
   },
 
-  handleSoundRequest: function (inSender, inSound) {
-    if (inSound.type === 'cycle') {
-      this.$.soundController.playCycle(inSound.name);
-      return
-    }
-    if (inSound.type === 'stop') {
-      this.$.soundController.stopASound(inSound.name);
-      return;
-    }
-    this.$.soundController.playASound(inSound.name);
+  handleSoundRequest: {
+    mute: function() {}, 
+    soundEnabled: function (inSender, inSound) {
+      if (inSound.type === 'cycle') {
+        this.$.soundController.playCycle(inSound.name);
+        return
+      }
+      if (inSound.type === 'stop') {
+        this.$.soundController.stopASound(inSound.name);
+        return;
+      }
+      this.$.soundController.playASound(inSound.name);
+    },
   },
 });

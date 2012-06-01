@@ -1,7 +1,8 @@
 body{
+  font-family: 'Helvetica Neue', 'Nimbus Sans L', Arial, sans-serif;
 }
 .app{
-  background-color:#2D2D2D ;
+  background-color:#F0F0ED;
   color: #cca;
   text-align: center;
   //display: block;
@@ -11,8 +12,14 @@ body{
 .app div{
   //display: inline-block;
 }
+.app>.header{
+   background-color: #33363B;
+   height: 50px;
+   font-size: 30px;
+   line-height: 50px;
+}
 .app>.slotMachine{
-  width: 900px;
+  width: 800px;
   margin: auto;
 }
 .app>.slotMachine>.gamePane{
@@ -24,16 +31,16 @@ body{
 }
 .jpLamp{
   position: absolute;
-  background-color: #333;
-  border: 1px dashed #444;
+  //background-color: #333;
   margin: 6px;
   top:192px;
   left:192px;
-  width: 50px;
-  height: 50px;
+  width: 52px;
+  height: 52px;
   z-index: 100;
   line-height: 50px;
   font-size: 30px;
+  color: #CCA;
 }
 .supPane{
   position: absolute;
@@ -44,7 +51,7 @@ body{
 }
 .supLamp{
   position: absolute;
-  border: 1px dashed #554;
+  border: 1px dashed #C8C8C9;
   margin: 4px;
   width: 54px;
   height: 54px;
@@ -53,9 +60,9 @@ body{
   font-size: 25px;
 }
 .gamePane>.supPane>.show{
-  color: #799;
-  border: 1px solid #776;
-  background-color: #433;
+  color: #999999;
+  border: 1px solid #33363B;
+  background-color: #33363B;
 }
 
 .sl0
@@ -103,10 +110,11 @@ body{
 .lamp{
   position: absolute;
   border-radius: 45px;
-  border: 7px solid #595F54;
+  margin: 7px 0 0 7px ;
   width: 50px;
   height: 50px;
   background-repeat:no-repeat;
+  background-color: #D5D5D4;
   background-image: url("../image/2.png"); 
   line-height: 80px;
   text-align: right;
@@ -116,19 +124,23 @@ body{
 }
 .color1{
   background-color:#fa3f32;
-  border-color: #8a3f32;
+  border: 7px solid #8a3f32;
+  margin: 0;
 }
 .color2{
   background-color:#ffcc24;
-  border-color: #8f6c24;
+  border: 7px solid #8f6c24;
+  margin: 0;
 }
 .color3{
   background-color:#009de0;
-  border-color: #305d90;
+  border: 7px solid #305d90;
+  margin: 0;
 }
 .color4{
   background-color: #60bd19;
-  border-color: #207f09;
+  border: 7px solid #207f09;
+  margin: 0;
 }
 .l0
 {
@@ -275,30 +287,30 @@ body{
   left:0;
 }
 .app>.slotMachine>.statusPane{
-  margin:50px 20px;
-  padding: 2px 2px 2px 7px;
+  display: inline-block;
+  margin: 80px 0 50px 0;
+  position: relative;
+  width: 270px;
+  height: 60px;
   float: right;
-  //border: 1px solid #333;
-  background: #353535;
 }
 .app>.slotMachine>.statusPane>div{
   display: block;
 }
 .controlBanner{
   display: inline-block;
-  background-color: #584939;
-  margin: 7px 7px 10px 0px;
+  background-color: #E3E3E0;
+  margin: 1px 1px 1px 1px ;
   text-align:center;
-  width: 96px;
-  //border: 1px dashed #444;
+  width: 77px;
   color: #899;
 }
 .controlNumber{
   display: inline-block;
-  background-color: #595955;
-  margin: 0px 7px 7px 0px;
+  background-color: #E3E3E0;
+  margin: 0px 1px 0px 1px ;
   text-align:center;
-  width: 96px;
+  width: 77px;
   //border: 1px dashed #444;
   color: #aa8;
 }
@@ -308,39 +320,34 @@ body{
   display: inline-block;
   float: right;
   position: relative;
-  width: 300px;
+  width: 270px;
   height: 400px;
-  margin-right: 14px;
 }
 .controlPane>.button{
-  //display: inline-block;
-  color: #aa8;
-  margin: 4px;
+  display: inline-block;
+  color: #666;
+  margin: 1px;
   padding: 0px;
-  background-color: #404040;
+  background-color: #E3E3E0;
   //border: 3px solid #353535;
   text-align: center;
   width: 56px;
   height: 66px;
   line-height:114px;
   background-image: url("../image/2.png"); 
+  background-repeat: no-repeat;
 }
-/*
 .controlPane>.button:hover{
-  background-color: #606555;
-  width: 60px;
-  height: 66px;
-  border:1px dashed #444;
-}*/
+  background-color: #F0F0ED;
+}
 .controlPane>.button.disable{
-  border-color: #222;
-  color: #111;
+  color: #999999;
 }
 .controlPane>.button.flash{
   color: #999969;
 }
 .controlPane>.button>.colorMultiple{
-  color: #333;
+  color: #999999;
   line-height: 46px;
   height: 46px;
   display: block;
@@ -352,93 +359,69 @@ body{
 }
 .controlPane>.b0
 {
-  background-image: -webkit-linear-gradient(top,#404040 15%, #606060 15%, #606060 30%, #404040 30%, #404040 37%,#606060 37%, #606060 52%,#404040 52%); /* Chrome 10+, Saf5.1+, iOS 5+ */
-  background-image:    -moz-linear-gradient(top, #404040 15%, #606060 15%, #606060 30%, #404040 30%, #404040 37%,#606060 37%, #606060 52%,#404040 52%); /* FF3.6+ */
-  background-image:     -ms-linear-gradient(top, #404040 15%, #606060 15%, #606060 30%, #404040 30%, #404040 37%,#606060 37%, #606060 52%,#404040 52%); /* IE10 */
-  background-image:      -o-linear-gradient(top, #404040 15%, #606060 15%, #606060 30%, #404040 30%, #404040 37%,#606060 37%, #606060 52%,#404040 52%); /* Opera 11.10+ */
-  background-image:         linear-gradient(to bottom, #404040 15%, #606060 15%, #606060 30%, #404040 30%, #404040 37%,#606060 37%, #606060 52%,#404040 52%);
+   background-image: none;
 }
 .controlPane>.b1
 {
-  background-image: -webkit-linear-gradient(top,#404040 15%, #606060 15%, #606060 30%, #404040 30%, #404040 37%,#606060 37%, #606060 52%,#404040 52%); /* Chrome 10+, Saf5.1+, iOS 5+ */
-  background-image:    -moz-linear-gradient(top, #404040 15%, #606060 15%, #606060 30%, #404040 30%, #404040 37%,#606060 37%, #606060 52%,#404040 52%); /* FF3.6+ */
-  background-image:     -ms-linear-gradient(top, #404040 15%, #606060 15%, #606060 30%, #404040 30%, #404040 37%,#606060 37%, #606060 52%,#404040 52%); /* IE10 */
-  background-image:      -o-linear-gradient(top, #404040 15%, #606060 15%, #606060 30%, #404040 30%, #404040 37%,#606060 37%, #606060 52%,#404040 52%); /* Opera 11.10+ */
-  background-image:         linear-gradient(to bottom, #404040 15%, #606060 15%, #606060 30%, #404040 30%, #404040 37%,#606060 37%, #606060 52%,#404040 52%);
+   background-image: none;
 }
 .controlPane>.b2
 {
-  background-image: -webkit-linear-gradient(top,#404040 15%, #606060 15%, #606060 30%, #404040 30%, #404040 37%,#606060 37%, #606060 52%,#404040 52%); /* Chrome 10+, Saf5.1+, iOS 5+ */
-  background-image:    -moz-linear-gradient(top, #404040 15%, #606060 15%, #606060 30%, #404040 30%, #404040 37%,#606060 37%, #606060 52%,#404040 52%); /* FF3.6+ */
-  background-image:     -ms-linear-gradient(top, #404040 15%, #606060 15%, #606060 30%, #404040 30%, #404040 37%,#606060 37%, #606060 52%,#404040 52%); /* IE10 */
-  background-image:      -o-linear-gradient(top, #404040 15%, #606060 15%, #606060 30%, #404040 30%, #404040 37%,#606060 37%, #606060 52%,#404040 52%); /* Opera 11.10+ */
-  background-image:         linear-gradient(to bottom, #404040 15%, #606060 15%, #606060 30%, #404040 30%, #404040 37%,#606060 37%, #606060 52%,#404040 52%);
+   background-image: none;
 }
 .controlPane>.b3{
 visibility:hidden;
 }
 .controlPane>.b4
 {
-  background-position: 0 0;
+  background-position: 0 -56px;
 }
 .controlPane>.b5
 {
-  background-position: -336px 0;
+  background-position: -336px -56px;
 }
 .controlPane>.b6
 {
-  background-position: -392px 0;
+  background-position: -392px -56px;
 }
 .controlPane>.b7
 {
-  background-position: -280px 0;
+  background-position: -280px -56px;
 }
 .controlPane>.b8
 {
-  background-position: -56px 0;
+  background-position: -56px -56px;
 }
 .controlPane>.b9
 {
-  background-position: -224px 0;
+  background-position: -224px -56px;
 }
 .controlPane>.b10
 {
-  background-position: -112px 0;
+  background-position: -112px -56px;
 }
 .controlPane>.b11
 {
-  background-position: -168px 0;
+  background-position: -168px -56px;
 }
 .controlPane>.b12
 { 
-  background-image: -webkit-linear-gradient(top,#404040 10%, #fa3f32 20%, #fa3f32 50%, #404040 60%); /* Chrome 10+, Saf5.1+, iOS 5+ */
-  background-image:    -moz-linear-gradient(top, #404040 10%, #fa3f32 20%, #fa3f32 50%, #404040 60%); /* FF3.6+ */
-  background-image:     -ms-linear-gradient(top, #404040 10%, #fa3f32 20%, #fa3f32 50%, #404040 60%); /* IE10 */
-  background-image:      -o-linear-gradient(top, #404040 10%, #fa3f32 20%, #fa3f32 50%, #404040 60%); /* Opera 11.10+ */
-  background-image:         linear-gradient(to bottom, #404040 10%, #fa3f32 20%, #fa3f32 50%, #404040 60%);
+   background-image: none;
+   background-color: #f0d0d0;
 }
 
 .controlPane>.b13
 {
-  background-image: -webkit-linear-gradient(top,#404040 10%, #ffcc24 20%, #ffcc24 50%, #404040 60%); /* Chrome 10+, Saf5.1+, iOS 5+ */
-  background-image:    -moz-linear-gradient(top, #404040 10%, #ffcc24 20%, #ffcc24 50%, #404040 60%); /* FF3.6+ */
-  background-image:     -ms-linear-gradient(top, #404040 10%, #ffcc24 20%, #ffcc24 50%, #404040 60%); /* IE10 */
-  background-image:      -o-linear-gradient(top, #404040 10%, #ffcc24 20%, #ffcc24 50%, #404040 60%); /* Opera 11.10+ */
-  background-image:         linear-gradient(to bottom, #404040 10%, #ffcc24 20%, #ffcc24 50%, #404040 60%);
+   background-image: none;
+   background-color: #e9e6c0;
 }
 .controlPane>.b14
 {
-  background-image: -webkit-linear-gradient(top,#404040 10%, #009de0 20%, #009de0 50%, #404040 60%); /* Chrome 10+, Saf5.1+, iOS 5+ */
-  background-image:    -moz-linear-gradient(top, #404040 10%, #009de0 20%, #009de0 50%, #404040 60%); /* FF3.6+ */
-  background-image:     -ms-linear-gradient(top, #404040 10%, #009de0 20%, #009de0 50%, #404040 60%); /* IE10 */
-  background-image:      -o-linear-gradient(top, #404040 10%, #009de0 20%, #009de0 50%, #404040 60%); /* Opera 11.10+ */
-  background-image:         linear-gradient(to bottom, #404040 10%, #009de0 20%, #009de0 50%, #404040 60%);
+   background-image: none;
+   background-color: #d0d0f0;
 }
 .controlPane>.b15
 {
-  background-image: -webkit-linear-gradient(top,#404040 10%, #60bd19 20%, #60bd19 50%, #404040 60%); /* Chrome 10+, Saf5.1+, iOS 5+ */
-  background-image:    -moz-linear-gradient(top, #404040 10%, #60bd19 20%, #60bd19 50%, #404040 60%); /* FF3.6+ */
-  background-image:     -ms-linear-gradient(top, #404040 10%, #60bd19 20%, #60bd19 50%, #404040 60%); /* IE10 */
-  background-image:      -o-linear-gradient(top, #404040 10%, #60bd19 20%, #60bd19 50%, #404040 60%); /* Opera 11.10+ */
-  background-image:         linear-gradient(to bottom, #404040 10%, #60bd19 20%, #60bd19 50%, #404040 60%);
+   background-image: none;
+   background-color: #afdab2;
 }
