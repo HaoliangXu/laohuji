@@ -88,7 +88,7 @@ enyo.kind({
       this.$.fetcher.readProp();
       //TODO better event in newest Enyo
       this.handleKeyPress();
-      window.addEventListener("keypress", this.handleKeyPress.bind(this));
+      window.document.addEventListener("keypress", this.handleKeyPress.bind(this));
     }
   },
 
@@ -178,9 +178,9 @@ enyo.kind({
     if (4 <= index && index <= 11) {
       if (!this.alreadyBet) {
         this.weight = [0,0,0,0,0,0,0,0,0,0,0,0];
-        this.alreadyBet = true;
       }
       if (prop.points > 0 && this.weight[index - 4] < 99) {
+        this.alreadyBet = true;
         this.handleSoundRequest(this, {type: 'play', name: 'click'});
         this.weight[index - 4] ++;
         inSender.setValue(index, this.weight[index - 4]);
@@ -193,9 +193,10 @@ enyo.kind({
     if (12 <= index) {
       if (!this.alreadyBet) {
         this.weight = [0,0,0,0,0,0,0,0,0,0,0,0];
-        this.alreadyBet = true;
       }
       if (prop.points > 9 && this.weight[index - 4] < 90) {
+        this.alreadyBet = true;
+        this.handleSoundRequest(this, {type: 'play', name: 'click'});
         this.weight[index - 4] += 10;
         inSender.setValue(index, this.weight[index - 4]);
         prop.points -= 10;
